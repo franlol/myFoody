@@ -14,11 +14,17 @@ const User = require('../models/User');
 // ROUTES
 router.get('/login', (req, res, next) => {
     // CHECK IF SESSION EXISTS -> /
+    if(req.session.currentUser){
+        res.redirect('/');
+    }
     res.render('auth/login');
 });
 
 router.post('/login', async (req, res, next) => {
     // CHEKC IF SESSION
+    if(req.session.currentUser){
+        res.redirect('/');
+    }
     const { username, password } = req.body;
     if (!username || !password) {
         res.redirect('/auth/login');
@@ -33,7 +39,9 @@ router.post('/login', async (req, res, next) => {
         }
         if (bcrypt.compareSync(password, userResult.password)) {
             // SESSION UP
+            req.session.currentUser = userResult;
             return res.redirect('/');
+
         } else {
             // FLASH
             return res.redirect('/auth/login');
@@ -46,11 +54,17 @@ router.post('/login', async (req, res, next) => {
 
 router.get('/signup', (req, res, next) => {
     // CHECK IF SESSION, SO REDIRECT
+    if(req.session.currentUser){
+       return res.redirect('/');
+    }
     res.render('auth/signup');
 });
 
 router.post('/signup', async (req, res, next) => {
     // CHECKSESSION EXISTS
+    if(req.session.currentUser){
+       return res.redirect('/');
+    }
     const { username, password } = req.body;
     if (!username || !password) {
         res.redirect('/auth/signup');
@@ -74,8 +88,9 @@ router.post('/signup', async (req, res, next) => {
             ownRecipes: [],
             likes: 0
         };
-        await User.create(newUser);
+        const createdUser = await User.create(newUser);
         // ADD SESSION
+        req.session.currentUser = createdUser;
         res.redirect('/');
     } catch (err) {
         next(err);

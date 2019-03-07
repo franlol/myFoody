@@ -5,12 +5,35 @@ const cookieParser = require('cookie-parser');
 const logger = require('morgan');
 const mongoose = require('mongoose');
 
+// SESSIONS MODULES
+const session = require('express-session');
+const MongoStore = require('connect-mongo')(session);
+
 // ROUTER
 const indexRouter = require('./routes/index');
 const authRouter = require('./routes/auth');
 
 // APP
 const app = express();
+
+// SESSION MIDLEWARE
+app.use(session({
+    store: new MongoStore({
+        mongooseConnection: mongoose.connection,
+        ttl: 24 * 60 * 60 // 1 day
+    }),
+    secret: 'some-string',
+    resave: true,
+    saveUninitialized: true,
+    cookie: {
+        maxAge: 24 * 60 * 60 * 1000
+    }
+}));
+
+app.use((req, res, next) => {
+    app.locals.currentUser = req.session.currentUser;
+    next();
+});
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));

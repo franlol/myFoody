@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <link rel="stylesheet" href="/stylesheets/auth.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>MyFoody - Signup</title>
+</head>
+
+<body>
+    <div class="login-container">
+        <div class="login-wrap">
+            <h1>MyFoody</h1>
+            <h3>Share your foods!</h3>
+            <form action="/auth/signup" method="POST">
+                <label for="inputUser">Username:</label>
+                <input type="text" name="username" id="inputUser">
+                <label for="password">Password</label>
+                <input type="password" name="password" id="inputPassword">
+                <button type="submit">Register</button>
+            </form>
+            <a href="/auth/login">Login</a>
+        </div>
+    </div>
+
+</body>
+
+</html>
+
+<!-- En el modelo usuario poner 'Preferencia' para saber si el usuario prefiere un tipo de comida? -->

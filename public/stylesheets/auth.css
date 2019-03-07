@@ -1,0 +1,120 @@
+@import url('https://fonts.googleapis.com/css?family=Lobster');
+@import url('https://fonts.googleapis.com/css?family=Lobster+Two:400,700');
+@import url('https://fonts.googleapis.com/css?family=Lato:300,400,700');
+
+/* Blanco #e8edf3
+Amarillo #e6cf8b
+Rojo #b56969
+Azul #22264b
+Gradient FF5F6D FFC371 */
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: "Lato", sans-serif;
+}
+
+.login-container {
+    margin: 10px;
+    width: calc(100vw - 20px);
+    height: calc(100vh - 20px);
+}
+
+.login-wrap {
+    display: flex;
+    flex-direction: column;
+
+    height: 100%;
+    width: 100%;
+    
+    box-shadow: 0px 0px 21px -4px rgba(0,0,0,0.9);
+    border-radius: 8px;
+    background: linear-gradient(135deg, rgba(241,242,246,1) 0%, rgba(255,255,255,1) 100%);
+    color: #22264b;
+}
+
+h1 {
+    font-family: "Lobster", sans-serif;
+    margin: 0;
+    padding: 30px 0 0;
+    text-align: center;
+    font-size: 4em;
+
+    background: -webkit-linear-gradient(135deg, #FF5F6D, #FFC371);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+h3 {
+    text-align: center;
+    font-family: "Lobster two", sans-serif;
+    margin: 0 0 auto;
+    padding: 0;
+    font-size: 1.3em;
+}
+
+.login-wrap form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    text-align: center;
+}
+
+.login-wrap form label {
+    font-size: 1.5em;
+    margin: 20px 0 10px;
+    text-align: center;
+}
+
+.login-wrap form input {
+    height: 35px;
+    width: 300px;
+    border: 0px solid #fff;
+    box-shadow: 0px 0px 26px 1px rgba(0,0,0,0.1);
+    border-radius: 10px;
+    font-size: 1.4em;
+    text-align: center;
+}
+
+.login-wrap form button {
+    margin: 50px 0;
+    padding: 16px 100px;
+    border: 0px solid #fff;
+    border-radius: 50px;
+    font-size: 1.3em;
+    /* background-image: linear-gradient(to right, #ed6ea0, #ec8c69); */
+    background-image: linear-gradient(to right, #FF5F6D 0%, #FFC371 100%);
+    box-shadow: 0px 5px 46px 0px rgba(255,95,109,0.3);
+
+    color: white;
+}
+
+.login-wrap a {
+    margin: auto auto 20px;
+    color: #22264b;
+    /* text-decoration: none; */
+}
+
+.login-wrap a:hover {
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+@media only screen and (min-width: 600px) {
+    .login-container {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        margin: 0;
+        width: 100vw;
+        height: 100vh;
+        background: linear-gradient(135deg, rgba(241,242,246,1) 0%, rgba(255,255,255,1) 100%);
+    }
+    .login-wrap {
+        height: 800px;
+        width: 600px;
+
+    }
+}

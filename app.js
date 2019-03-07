@@ -3,10 +3,13 @@ const express = require('express');
 const path = require('path');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
+const mongoose = require('mongoose');
 
+// ROUTER
 const indexRouter = require('./routes/index');
-const usersRouter = require('./routes/users');
+const authRouter = require('./routes/auth');
 
+// APP
 const app = express();
 
 // view engine setup
@@ -19,16 +22,24 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use('/', indexRouter);
-app.use('/users', usersRouter);
+// BBDD
+mongoose.connect('mongodb://localhost/myFoody', {
+    keepAlive: true,
+    useNewUrlParser: true,
+    reconnectTries: Number.MAX_VALUE
+});
 
-// 400 handler
+// ROUTER
+app.use('/', indexRouter);
+app.use('/auth', authRouter);
+
+// 4xx handler
 app.use((req, res, next) => {
     res.status(404);
     res.render('errors/error400');
 });
 
-// 500 handler
+// 5xx handler
 app.use((err, req, res, next) => {
     console.error('ERROR', req.method, req.path, err);
     if (!res.headersSent) {

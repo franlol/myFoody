@@ -12,9 +12,7 @@ const saltRounds = 10;
 const User = require('../models/User');
 
 // AUTH MIDDLEWARES
-const { requireAnon } = require('../middlewares/auth');
-const { requireFields } = require('../middlewares/auth');
-const { requireUser } = require('../middlewares/auth');
+const { requireAnon, requireFields, requireUser } = require('../middlewares/auth');
 
 // ROUTES
 router.get('/signup', requireAnon, (req, res, next) => {

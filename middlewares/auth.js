@@ -1,9 +1,19 @@
 'use strict';
 
 module.exports = {
+    // este middleware lo usaremos para asegurarnos que un usuario ya logueado no pueda acceder a las pantallas de loguin y singup.
     requireAnon (req, res, next) {
         if (req.session.currentUser) {
             res.redirect('/');
+            return;
+        }
+        next();
+    },
+
+    // este middleware lo usaremos para asegurarnos que un usuario sin registrar/loguear no pueda acceder a nuestra app
+    requireUser (req, res, next) {
+        if (!req.session.currentUser) {
+            res.redirect('/auth/login');
             return;
         }
         next();

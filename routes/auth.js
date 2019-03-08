@@ -14,6 +14,7 @@ const User = require('../models/User');
 // AUTH MIDDLEWARES
 const { requireAnon } = require('../middlewares/auth');
 const { requireFields } = require('../middlewares/auth');
+const { requireUser } = require('../middlewares/auth');
 
 // ROUTES
 router.get('/signup', requireAnon, (req, res, next) => {
@@ -78,6 +79,11 @@ router.post('/login', requireAnon, requireFields, async (req, res, next) => {
         next(err);
     }
     // SESSION UP
+});
+
+router.post('/logout', requireUser, (req, res, next) => {
+    delete req.session.currentUser;
+    res.redirect('/');
 });
 
 module.exports = router;

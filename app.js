@@ -1,4 +1,5 @@
 // const createError = require('http-errors');
+require('dotenv').config();
 const express = require('express');
 const path = require('path');
 const cookieParser = require('cookie-parser');
@@ -47,7 +48,7 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 // BBDD
-mongoose.connect('mongodb://localhost/myFoody', {
+mongoose.connect('process.env.MONGODB_URI', {
     keepAlive: true,
     useNewUrlParser: true,
     reconnectTries: Number.MAX_VALUE

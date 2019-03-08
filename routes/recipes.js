@@ -1,0 +1,44 @@
+'use strict';
+
+// MODULES
+const express = require('express');
+const router = express.Router();
+
+// MODELS
+const Recipe = require('../models/Recipe');
+
+//  MIDDLEWARES
+const { requireFields, requireUser } = require('../middlewares/auth');
+
+router.get('/add', requireUser, (req, res, next) => {
+    res.render('create-edit');
+});
+
+router.post('/add', requireUser, requireFields, async (req, res, next) => {
+    const { _id, title, photoUrl, authorId, classification, ingredients, cookingTime, description } = req.body;
+    const recipe = {
+        title,
+        photoUrl,
+        authorId,
+        classification,
+        ingredients,
+        cookingTime,
+        description,
+        views: 0,
+        likes: 0
+    };
+    try {
+        if (_id) {
+            await Recipe.findByIdAndUpdate(_id, recipe);
+        } else {
+            // con la siguiente linea le añadimos a la tortilla una propiedad que es el id del creador de la tortilla.
+            recipe.authorId = req.session.currentUser._id;
+            await Recipe.create(recipe);
+        }
+        res.redirect('/');
+    } catch (error) {
+        next(error);
+    }
+});
+
+module.exports = router;

@@ -9,6 +9,10 @@ const recipeModel = new Schema({
     photoUrl: {
         type: String
     },
+    title: {
+        type: String,
+        required: true
+    },
     authorId: {
         type: ObjectId,
         ref: 'User',

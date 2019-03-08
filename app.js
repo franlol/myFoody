@@ -14,6 +14,7 @@ const MongoStore = require('connect-mongo')(session);
 const indexRouter = require('./routes/index');
 const authRouter = require('./routes/auth');
 const userRouter = require('./routes/user');
+const recipesRouter = require('./routes/recipes');
 
 // APP
 const app = express();
@@ -48,7 +49,7 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 // BBDD
-mongoose.connect(process.env.MONGODB_URI, {
+mongoose.connect(`${process.env.MONGODB_URI}`, {
     keepAlive: true,
     useNewUrlParser: true,
     reconnectTries: Number.MAX_VALUE
@@ -58,6 +59,7 @@ mongoose.connect(process.env.MONGODB_URI, {
 app.use('/', indexRouter);
 app.use('/auth', authRouter);
 app.use('/user', userRouter);
+app.use('/recipes', recipesRouter);
 
 // 4xx handler
 app.use((req, res, next) => {

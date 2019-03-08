@@ -6,9 +6,9 @@
     "start": "node ./bin/www",
     "start-dev": "nodemon -e js,json,hbs bin/www"
   },
-  "engines":{
-    "node":"v11.10.0",
-    "npm":"6.7.0"
+  "engines": {
+    "node": "v11.10.1",
+    "npm": "6.8.0"
   },
   "dependencies": {
     "bcrypt": "^3.0.4",

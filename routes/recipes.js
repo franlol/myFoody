@@ -33,7 +33,6 @@ router.post('/add', requireUser, requireForm, async (req, res, next) => {
         if (_id) {
             await Recipe.findByIdAndUpdate(_id, recipe);
         } else {
-            // con la siguiente linea le añadimos a la tortilla una propiedad que es el id del creador de la tortilla.
             recipe.authorId = req.session.currentUser._id;
             await Recipe.create(recipe);
         }

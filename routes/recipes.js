@@ -8,18 +8,20 @@ const router = express.Router();
 const Recipe = require('../models/Recipe');
 
 //  MIDDLEWARES
-const { requireFields, requireUser } = require('../middlewares/auth');
+const { requireUser } = require('../middlewares/auth');
+
+const { requireForm } = require('../middlewares/recipes');
 
 router.get('/add', requireUser, (req, res, next) => {
     res.render('create-edit');
 });
 
-router.post('/add', requireUser, requireFields, async (req, res, next) => {
-    const { _id, title, photoUrl, authorId, classification, ingredients, cookingTime, description } = req.body;
+router.post('/add', requireUser, requireForm, async (req, res, next) => {
+    const { _id, title, photoUrl, classification, ingredients, cookingTime, description } = req.body;
     const recipe = {
         title,
         photoUrl,
-        authorId,
+        authorId: req.session.currentUser._id,
         classification,
         ingredients,
         cookingTime,

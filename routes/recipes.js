@@ -15,11 +15,15 @@ router.get('/add', requireUser, (req, res, next) => {
     res.render('recipes/create-edit');
 });
 
-router.post('/add', requireUser, parser.fields([{ name: 'image' }, { name: 'title' }]), async (req, res, next) => {
+router.post('/add', requireUser, parser.fields([{ name: 'image' }, { name: 'title' }, { name: 'ingredients' }, { name: 'cookingTime' }, { name: 'description' }]), async (req, res, next) => {
     const { title, ingredients, cookingTime, description } = req.body;
     const { categoryMeat, categoryVegetables, categoryFish, categoryBackery } = req.body;
 
-    // if (!title || !ingredients || !cookingTime || !description) {        MIDDLEWARE requireForm
+    if (!title || !ingredients || !cookingTime || !description) {
+        res.redirect('/recipes/add');
+        console.log('FUCK YOU - middleware require-Form');
+        return;
+    }
 
     let categories = [];
     if (categoryMeat === 'on') {

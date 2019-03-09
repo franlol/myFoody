@@ -4,12 +4,13 @@
 const express = require('express');
 const router = express.Router();
 const parser = require('../middlewares/fileUpload');
+
 // MODELS
-// const Recipe = require('../models/Recipe');
+const Recipe = require('../models/Recipe');
 
 //  MIDDLEWARES
 const { requireUser } = require('../middlewares/auth');
-const { requireForm } = require('../middlewares/recipes');
+// const { requireForm } = require('../middlewares/recipes');
 
 router.get('/add', requireUser, (req, res, next) => {
     res.render('recipes/create-edit');
@@ -68,18 +69,20 @@ router.post('/add', requireUser, parser.fields([{ name: 'image' }, { name: 'titl
     // cookingTime: 213
     // description: description
 
-    // try {
-    //     if (_id) {
-    //         await Recipe.findByIdAndUpdate(_id, recipe);
-    //     } else {
-    //         recipe.authorId = req.session.currentUser._id;
-    //         await Recipe.create(recipe);
-    //     }
-    //     res.redirect('/');
-    // } catch (error) {
-    //     next(error);
-    // }
-    next();
+    try {
+        // if (_id) {
+        //     await Recipe.findByIdAndUpdate(_id, recipe);
+        // } else {
+        //     recipe.authorId = req.session.currentUser._id;
+        //     await Recipe.create(recipe);
+        // }
+
+        await Recipe.create(recipe);
+
+        res.redirect('/');
+    } catch (error) {
+        next(error);
+    }
 });
 
 module.exports = router;

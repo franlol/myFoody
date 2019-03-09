@@ -12,7 +12,7 @@ const MongoStore = require('connect-mongo')(session);
 // ROUTER
 const indexRouter = require('./routes/index');
 const authRouter = require('./routes/auth');
-
+const userRouter = require('./routes/user');
 // APP
 const app = express();
 
@@ -55,6 +55,7 @@ mongoose.connect('mongodb://localhost/myFoody', {
 // ROUTER
 app.use('/', indexRouter);
 app.use('/auth', authRouter);
+app.use('/user', userRouter);
 
 // 4xx handler
 app.use((req, res, next) => {

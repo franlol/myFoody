@@ -2,7 +2,10 @@ var express = require('express');
 var router = express.Router();
 
 router.get('/', (req, res, next) => {
-    res.render('index', { title: 'Express' });
+    if (!req.session.currentUser) {
+        return res.redirect('/auth/signup');
+    }
+    res.render('index', { title: 'MyFoody' });
 });
 
 module.exports = router;

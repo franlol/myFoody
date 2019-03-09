@@ -14,7 +14,7 @@ const User = require('../models/User');
 // ROUTES
 router.get('/login', (req, res, next) => {
     // CHECK IF SESSION EXISTS -> /
-    if(req.session.currentUser){
+    if (req.session.currentUser) {
         res.redirect('/');
     }
     res.render('auth/login');
@@ -22,7 +22,7 @@ router.get('/login', (req, res, next) => {
 
 router.post('/login', async (req, res, next) => {
     // CHEKC IF SESSION
-    if(req.session.currentUser){
+    if (req.session.currentUser) {
         res.redirect('/');
     }
     const { username, password } = req.body;
@@ -41,7 +41,6 @@ router.post('/login', async (req, res, next) => {
             // SESSION UP
             req.session.currentUser = userResult;
             return res.redirect('/');
-
         } else {
             // FLASH
             return res.redirect('/auth/login');
@@ -54,16 +53,16 @@ router.post('/login', async (req, res, next) => {
 
 router.get('/signup', (req, res, next) => {
     // CHECK IF SESSION, SO REDIRECT
-    if(req.session.currentUser){
-       return res.redirect('/');
+    if (req.session.currentUser) {
+        return res.redirect('/');
     }
     res.render('auth/signup');
 });
 
 router.post('/signup', async (req, res, next) => {
     // CHECKSESSION EXISTS
-    if(req.session.currentUser){
-       return res.redirect('/');
+    if (req.session.currentUser) {
+        return res.redirect('/');
     }
     const { username, password } = req.body;
     if (!username || !password) {

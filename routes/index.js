@@ -5,7 +5,7 @@ const router = express.Router();
 const { requireUser } = require('../middlewares/auth');
 
 router.get('/', requireUser, (req, res, next) => {
-    res.render('index', { title: 'Express' });
+    res.render('index', { title: 'MyFoody' });
 });
 
 module.exports = router;

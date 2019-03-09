@@ -16,18 +16,15 @@ const { requireAnon, requireFields, requireUser } = require('../middlewares/auth
 
 // ROUTES
 router.get('/signup', requireAnon, (req, res, next) => {
-    // CHECK IF SESSION, SO REDIRECT
     res.render('auth/signup');
 });
 
 router.post('/signup', requireAnon, requireFields, async (req, res, next) => {
-    // CHECKSESSION EXISTS
     const { username, password } = req.body;
     try {
         const result = await User.findOne({ username });
         if (result) {
             console.log('User :' + username + ' already exists. Please choose other one');
-
             return res.redirect('/auth/signup');
         }
         const salt = bcrypt.genSaltSync(saltRounds);
@@ -42,7 +39,6 @@ router.post('/signup', requireAnon, requireFields, async (req, res, next) => {
             likes: 0
         };
         const createdUser = await User.create(newUser);
-        // ADD SESSION
         req.session.currentUser = createdUser;
         res.redirect('/');
     } catch (err) {
@@ -51,16 +47,13 @@ router.post('/signup', requireAnon, requireFields, async (req, res, next) => {
 });
 
 router.get('/login', requireAnon, (req, res, next) => {
-    // CHECK IF SESSION EXISTS -> /
     res.render('auth/login');
 });
 
 router.post('/login', requireAnon, requireFields, async (req, res, next) => {
-    // CHEKC IF SESSION
     const { username, password } = req.body;
     try {
         const userResult = await User.findOne({ username });
-        console.log(userResult);
         if (!userResult) {
             // FLASH
             return res.redirect('/auth/login');

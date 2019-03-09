@@ -10,7 +10,7 @@ const { requireUser } = require('../middlewares/auth');
 
 // ROUTES
 router.get('/', requireUser, (req, res, next) => {
-    res.render('user');
+    res.render('user/user');
 });
 
 // ROUTE TO FAVORITES -- AQUÍ TENGO UN POCO DE LIO, LA VERDAD

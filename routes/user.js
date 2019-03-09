@@ -1,12 +1,3 @@
-<<<<<<< HEAD
-const express = require('express');
-const router = express.Router();
-
-router.get('/', (req, res, next) => {
-    res.render('user/user');
-});
-
-=======
 'use strict';
 
 //  MODULES
@@ -40,5 +31,4 @@ router.get('/', requireUser, (req, res, next) => {
 //     }
 // });
 
->>>>>>> d2648d6ab96e5d9561040a9a981d4f5e7e0f2d9e
 module.exports = router;

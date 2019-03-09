@@ -14,11 +14,8 @@ const MongoStore = require('connect-mongo')(session);
 const indexRouter = require('./routes/index');
 const authRouter = require('./routes/auth');
 const userRouter = require('./routes/user');
-<<<<<<< HEAD
-=======
 const recipesRouter = require('./routes/recipes');
 
->>>>>>> d2648d6ab96e5d9561040a9a981d4f5e7e0f2d9e
 // APP
 const app = express();
 
@@ -62,10 +59,7 @@ mongoose.connect(`${process.env.MONGODB_URI}`, {
 app.use('/', indexRouter);
 app.use('/auth', authRouter);
 app.use('/user', userRouter);
-<<<<<<< HEAD
-=======
 app.use('/recipes', recipesRouter);
->>>>>>> d2648d6ab96e5d9561040a9a981d4f5e7e0f2d9e
 
 // 4xx handler
 app.use((req, res, next) => {

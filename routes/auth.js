@@ -11,71 +11,17 @@ const saltRounds = 10;
 // MODELS
 const User = require('../models/User');
 
-<<<<<<< HEAD
-// ROUTES
-router.get('/login', (req, res, next) => {
-    // CHECK IF SESSION EXISTS -> /
-    if (req.session.currentUser) {
-        res.redirect('/');
-    }
-    res.render('auth/login');
-});
-
-router.post('/login', async (req, res, next) => {
-    // CHEKC IF SESSION
-    if (req.session.currentUser) {
-        res.redirect('/');
-    }
-    const { username, password } = req.body;
-    if (!username || !password) {
-        res.redirect('/auth/login');
-        return;
-    }
-    try {
-        const userResult = await User.findOne({ username });
-        console.log(userResult);
-        if (!userResult) {
-            // FLASH
-            return res.redirect('/auth/login');
-        }
-        if (bcrypt.compareSync(password, userResult.password)) {
-            // SESSION UP
-            req.session.currentUser = userResult;
-            return res.redirect('/');
-        } else {
-            // FLASH
-            return res.redirect('/auth/login');
-        }
-    } catch (err) {
-        next(err);
-    }
-    // SESSION UP
-});
-=======
 // AUTH MIDDLEWARES
 const { requireAnon, requireFields, requireUser } = require('../middlewares/auth');
->>>>>>> d2648d6ab96e5d9561040a9a981d4f5e7e0f2d9e
 
 // ROUTES
 router.get('/signup', requireAnon, (req, res, next) => {
     // CHECK IF SESSION, SO REDIRECT
-<<<<<<< HEAD
-    if (req.session.currentUser) {
-        return res.redirect('/');
-    }
-=======
->>>>>>> d2648d6ab96e5d9561040a9a981d4f5e7e0f2d9e
     res.render('auth/signup');
 });
 
 router.post('/signup', requireAnon, requireFields, async (req, res, next) => {
     // CHECKSESSION EXISTS
-<<<<<<< HEAD
-    if (req.session.currentUser) {
-        return res.redirect('/');
-    }
-=======
->>>>>>> d2648d6ab96e5d9561040a9a981d4f5e7e0f2d9e
     const { username, password } = req.body;
     try {
         const result = await User.findOne({ username });

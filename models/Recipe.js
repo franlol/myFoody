@@ -18,7 +18,7 @@ const recipeModel = new Schema({
         ref: 'User',
         required: true
     },
-    classification: {
+    category: {
         type: [String]
     },
     ingredients: {

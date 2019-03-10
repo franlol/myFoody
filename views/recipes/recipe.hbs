@@ -13,6 +13,11 @@
 
 <body>
   <div class="container">
+
+    <div class="recipe-back">
+      <a href="/"><i class="fas fa-chevron-left"></i></a>
+    </div>
+
     <div class="recipe-photo">
       <img src="{{recipe.photoUrl}}" alt="{{recipe.title}}">
     </div>
@@ -24,7 +29,13 @@
         <p><i class="fas fa-utensils"></i></p>
       </div>
 
+      <div class="recipe-description">
+        <p>{{recipe.description}}</p>
+      </div>
+
       <div class="checkbox-container">
+        {{!-- To save checkboxes data and color later with js --}}
+        <input hidden type="text" id="checkbox-info" value="{{recipe.category}}">
         <div class="checkbox-wrap">
           <label for="category-meat"><i class="fas fa-drumstick-bite"></i></label><input type="checkbox"
             name="category-meat" id="category-meat">
@@ -41,18 +52,12 @@
           <label for="category-backery"><i class="fas fa-birthday-cake"></i></label><input type="checkbox"
             name="category-backery" id="category-backery">
         </div>
-      </div>
 
-
-      <div class="recipe-description">
-        <p>{{recipe.description}}</p>
-      </div>
-
-
-      <div class="recipe-stats">
-        <p><i class="far fa-eye"></i> {{recipe.views}}</p>
-        <p><i class="fas fa-utensils"></i> {{recipe.likes}}</p>
-        <p><i class="far fa-clock"></i> {{recipe.cookingTime}}</p>
+        <div class="recipe-stats">
+          <p><i class="far fa-eye"></i> {{recipe.views}}</p>
+          <p><i class="fas fa-utensils"></i> {{recipe.likes}}</p>
+          <p><i class="far fa-clock"></i> {{recipe.cookingTime}}</p>
+        </div>
       </div>
 
       <hr>
@@ -96,6 +101,8 @@
       </div>
     </div>
   </div>
+
+  <script src="/javascripts/recipe.js"></script>
 </body>
 
 </html>

@@ -1,13 +1,14 @@
 @import url('https://fonts.googleapis.com/css?family=Lato:300,400,700');
 
 /* Blanco #e8edf3
-Amarillo #e6cf8b
+gris claro para labels: #95a5a6
+Gris claro claro y muy claro #d1ccc0
 Rojo #b56969
 Azul #22264b
 Gradient FF5F6D FFC371
 background linear-gradient(135deg, rgba(241,242,246,1) 0%, rgba(255,255,255,1) 100%);
-Unselected Checkbox #d1ccc0
 negro: #2c3e50
+iconos: #95a5a6
 */
 
 body {
@@ -29,9 +30,26 @@ body {
     background: linear-gradient(135deg, rgba(241,242,246,1) 0%, rgba(255,255,255,1) 100%);
 }
 
+.recipe-back {
+    position: sticky;
+    height: 0;
+    top: 16px;
+    margin-left: 8px;
+}
+
+.recipe-back a {
+    padding: 10px 14px;
+    border: 0 solid black;
+    color: white;
+    border-radius: 40px;
+    background: -webkit-linear-gradient(135deg, #FF5F6D, #FFC371);
+    box-shadow: 0px 0px 41px -4px rgba(0,0,0,0.8);
+    margin: 20px auto 10px;
+}
+
 .recipe-photo {
     width: 100%;
-    height: 400px;
+    height: 280px;
 }
 
 .recipe-photo img {
@@ -56,24 +74,34 @@ body {
 .recipe-title h1 {
     margin: 0;
     font-size: 1.4em;
+    color: #22264b;
 }
 
 .recipe-title p {
     margin: 0;
-    font-size: 1.4em;
+    padding: 0 0 0 5px;
+    font-size: 1.6em;
+    color: #d1ccc0;
+}
+
+.recipe-title a {
+    color: inherit;
+    font-size: 1.6em;
+    margin: 0 10px 0 auto;
+    color: #2c3e50;
 }
 
 .checkbox-container {
     display: flex;
     justify-content: space-around;
-
-    color: #d1ccc0;
-    margin: 10px 0;
-    padding-left: 10px;
+    align-items: center;
+    color: #95a5a6;
+    margin: 10px 0 0 20px;
+    /* padding-left: 10px; */
 }
 
 .checkbox-container .checkbox-wrap label {
-    font-size: 40px;
+    font-size: 1.2em;
 }
 
 .checkbox-container input {
@@ -82,21 +110,23 @@ body {
 
 .recipe-description {
     text-align: justify;
-    margin: 5px;
+    /* margin: 5px; */
     padding: 0 10px;
     color: #2c3e50;
 }
 
 .recipe-description p {
-    margin: 0;
+    margin: 10px 0 20px;
+    color: #2c3e50;
 }
 
 .recipe-stats {
     display: flex;
     flex-flow: wrap;
     justify-content: flex-end;
+    align-items: center;
 
-    margin-bottom: 20px;
+    margin: 0 0 0 auto;
     /* color: #d1ccc0; */
 }
 
@@ -107,6 +137,8 @@ body {
 }
 
 hr {
+    border: 0.02em solid #d1ccc0;
+    margin-top: 20px;
     width: 90%;
     align-content: center;
 }
@@ -127,14 +159,18 @@ hr {
 
 .recipe-comments-header h2 {
     margin: 10px auto 0 0;
+    color: #22264b;
 }
 
 .recipe-comments-header p {
     font-size: 0.8em;
+    color: #22264b;
+    margin: auto 0 4px;
 }
 
 .recipe-comment p {
     text-align: justify;
+    color: #2c3e50;
 }
 
 .recipe-add-comment {
@@ -154,6 +190,7 @@ hr {
     border-radius: 10px;
     font-size: 1em;
     padding: 6px;
+    color: #2c3e50;
 }
 
 .recipe-add-comment form button {
@@ -166,6 +203,8 @@ hr {
 
     /* background-image: linear-gradient(to right, #ed6ea0, #ec8c69); */
     background-image: linear-gradient(to right, #FF5F6D 0%, #FFC371 100%);
-    box-shadow: 0px 5px 46px 0px rgba(255,95,109,0.3);
+    /* box-shadow: 0px 5px 46px 0px rgba(255,95,109,0.3); */
+    box-shadow: 0px 0px 21px -4px rgba(0,0,0,0.8);
+
     color: white;
 }

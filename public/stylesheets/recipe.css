@@ -1,0 +1,171 @@
+@import url('https://fonts.googleapis.com/css?family=Lato:300,400,700');
+
+/* Blanco #e8edf3
+Amarillo #e6cf8b
+Rojo #b56969
+Azul #22264b
+Gradient FF5F6D FFC371
+background linear-gradient(135deg, rgba(241,242,246,1) 0%, rgba(255,255,255,1) 100%);
+Unselected Checkbox #d1ccc0
+negro: #2c3e50
+*/
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: "Lato", sans-serif;
+    color: #22264b;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    
+    margin: 0;
+    padding: 0;
+    
+    width: 100vw;
+    height: 100%;
+    background: linear-gradient(135deg, rgba(241,242,246,1) 0%, rgba(255,255,255,1) 100%);
+}
+
+.recipe-photo {
+    width: 100%;
+    height: 400px;
+}
+
+.recipe-photo img {
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+}
+
+.recipe-info {
+    width: 100%;
+    height: 100%;
+}
+
+.recipe-title {
+    display: flex;
+    flex-flow: wrap;
+    justify-content: space-between;
+
+    padding: 10px;
+}
+
+.recipe-title h1 {
+    margin: 0;
+    font-size: 1.4em;
+}
+
+.recipe-title p {
+    margin: 0;
+    font-size: 1.4em;
+}
+
+.checkbox-container {
+    display: flex;
+    justify-content: space-around;
+
+    color: #d1ccc0;
+    margin: 10px 0;
+    padding-left: 10px;
+}
+
+.checkbox-container .checkbox-wrap label {
+    font-size: 40px;
+}
+
+.checkbox-container input {
+    height: 0%;
+}
+
+.recipe-description {
+    text-align: justify;
+    margin: 5px;
+    padding: 0 10px;
+    color: #2c3e50;
+}
+
+.recipe-description p {
+    margin: 0;
+}
+
+.recipe-stats {
+    display: flex;
+    flex-flow: wrap;
+    justify-content: flex-end;
+
+    margin-bottom: 20px;
+    /* color: #d1ccc0; */
+}
+
+.recipe-stats p {
+    margin: 0;
+    padding-right: 10px;
+    font-size: 0.8em;
+}
+
+hr {
+    width: 90%;
+    align-content: center;
+}
+
+.recipe-comments {
+    padding: 0 10px;
+    color: #2c3e50;
+}
+
+/* .recipe-comment {
+
+} */
+
+.recipe-comments-header {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.recipe-comments-header h2 {
+    margin: 10px auto 0 0;
+}
+
+.recipe-comments-header p {
+    font-size: 0.8em;
+}
+
+.recipe-comment p {
+    text-align: justify;
+}
+
+.recipe-add-comment {
+    padding: 10px;
+}
+
+.recipe-add-comment form {
+    display: flex;
+    flex-direction: column;
+}
+
+.recipe-add-comment form textarea {
+    font-family: "Lato", sans-serif;
+    height: 100px;
+    border: 0px solid #fff;
+    box-shadow: 0px 0px 26px 1px rgba(0,0,0,0.1);
+    border-radius: 10px;
+    font-size: 1em;
+    padding: 6px;
+}
+
+.recipe-add-comment form button {
+    margin: 15px 0 5px;
+    padding: 16px 100px;
+    border: 0px solid #fff;
+    border-radius: 50px;
+    font-size: 1.3em;
+    width: 100%;
+
+    /* background-image: linear-gradient(to right, #ed6ea0, #ec8c69); */
+    background-image: linear-gradient(to right, #FF5F6D 0%, #FFC371 100%);
+    box-shadow: 0px 5px 46px 0px rgba(255,95,109,0.3);
+    color: white;
+}

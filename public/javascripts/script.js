@@ -20,7 +20,7 @@ $(document).ready(function () {
     });
 
     // Al clickar el icono de la camara lanzar el evento click del fileupload
-    $('#form-camera').click(function () {
+    $('.photo-wrap').click(function () {
         $('#form-image-input').click();
     });
 
@@ -45,4 +45,35 @@ $(document).ready(function () {
         // console.log(ingredients);
         return true;
     });
+
+    // Al editar una receta, miramos el array volcado en el input hidden de los checkboxes y si existen los campos los marcamos de azulito
+    const categories = document.getElementById('checkbox-edit').value;
+    const categoriesArray = categories.split(',');
+    if (categoriesArray.includes('meat')) {
+        $('#category-meat').prop('checked', true);
+        $('#category-meat').siblings().css('color', '#22264b');
+    }
+    if (categoriesArray.includes('vegetables')) {
+        $('#category-vegetables').prop('checked', true);
+        $('#category-vegetables').siblings().css('color', '#22264b');
+    }
+    if (categoriesArray.includes('fish')) {
+        $('#category-fish').prop('checked', true);
+        $('#category-fish').siblings().css('color', '#22264b');
+    }
+    if (categoriesArray.includes('backery')) {
+        $('#category-backery').prop('checked', true);
+        $('#category-backery').siblings().css('color', '#22264b');
+    }
+
+    // Al editar una receta, seleccionar la imagen que tiene
+    if ($('.photo-wrap img').attr('src')) {
+        $('.photo-wrap img').width('100%');
+        $('.photo-wrap img').height('100%');
+
+        $('.photo-wrap i').height('0px');
+        $('.photo-wrap i').width('0px');
+        $('.photo-wrap i').css('padding', '0px');
+        $('.photo-wrap i').css('padding', '0px');
+    }
 });

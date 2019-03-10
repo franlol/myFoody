@@ -80,7 +80,7 @@ router.get('/:id', requireUser, async (req, res, next) => {
         if (recipe.authorId.equals(_id)) {
             isCreator = true;
         }
-        res.render('recipes/detail', { recipe, isCreator });
+        res.render('recipes/recipe', { recipe, isCreator });
     } catch (error) {
         next(error);
     }

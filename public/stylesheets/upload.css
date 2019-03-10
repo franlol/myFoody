@@ -17,16 +17,13 @@ body {
 .container {
     display: flex;
     justify-content: center;
-    
+    flex-direction: column;
     margin: 0;
     padding: 0;
     
     width: 100vw;
-    /* height: 100vh; */
     background: linear-gradient(135deg, rgba(241,242,246,1) 0%, rgba(255,255,255,1) 100%);
-    /* text-align: center; */
     color: #22264b;
-    font-family: "PWFoodcons";
 }
 
 .container form {
@@ -113,9 +110,9 @@ input,textarea, .tags-container {
     margin-bottom: 25px;
 }
 
+
 .cooking-time-wrap {
     display: flex;
-
     margin-bottom: 25px;
 }
 

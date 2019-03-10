@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css"
+    integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+  <link rel="stylesheet" href="/stylesheets/recipe.css">
+  <title>Document</title>
+</head>
+
+<body>
+  <div class="container">
+    <div class="recipe-photo">
+      <img src="{{recipe.photoUrl}}" alt="{{recipe.title}}">
+    </div>
+
+    <div class="recipe-info">
+      <div class="recipe-title">
+        <h1>{{recipe.title}}</h1>
+        <a href="/recipes/{{recipe._id}}/edit"><i class="far fa-edit"></i></a>
+        <p><i class="fas fa-utensils"></i></p>
+      </div>
+
+      <div class="checkbox-container">
+        <div class="checkbox-wrap">
+          <label for="category-meat"><i class="fas fa-drumstick-bite"></i></label><input type="checkbox"
+            name="category-meat" id="category-meat">
+        </div>
+        <div class="checkbox-wrap">
+          <label for="category-vegetables"><i class="fas fa-carrot"></i></label><input type="checkbox"
+            name="category-vegetables" id="category-vegetables">
+        </div>
+        <div class="checkbox-wrap">
+          <label for="category-fish"><i class="fas fa-fish"></i></label><input type="checkbox" name="category-fish"
+            id="category-fish">
+        </div>
+        <div class="checkbox-wrap">
+          <label for="category-backery"><i class="fas fa-birthday-cake"></i></label><input type="checkbox"
+            name="category-backery" id="category-backery">
+        </div>
+      </div>
+
+
+      <div class="recipe-description">
+        <p>{{recipe.description}}</p>
+      </div>
+
+
+      <div class="recipe-stats">
+        <p><i class="far fa-eye"></i> {{recipe.views}}</p>
+        <p><i class="fas fa-utensils"></i> {{recipe.likes}}</p>
+        <p><i class="far fa-clock"></i> {{recipe.cookingTime}}</p>
+      </div>
+
+      <hr>
+
+      <div class="recipe-comments">
+        <div class="recipe-comment">
+          <div class="recipe-comments-header">
+            <h2>franlol</h2>
+            <p>23/12/2018</p>
+          </div>
+          <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Nisi, fugit! Animi placeat neque dolorem sed
+            numquam. Voluptatum nostrum adipisci aliquid, dicta perferendis corrupti excepturi, explicabo quod dolorum
+            repellendus impedit harum!
+            Quod ducimus dolorum beatae? Labore hic dolore minima voluptates quibusdam rerum dolor vitae odio ut
+            voluptatem incidunt voluptas odit, nobis vel praesentium enim omnis fugit nihil expedita minus! Beatae,
+            corporis?
+          </p>
+        </div>
+
+        <div class="recipe-comment">
+          <div class="recipe-comments-header">
+            <h2>franlol</h2>
+            <p>23/12/2018</p>
+          </div>
+          <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit.</p>
+        </div>
+        <div class="recipe-comment">
+          <div class="recipe-comments-header">
+            <h2>franlol</h2>
+            <p>23/12/2018</p>
+          </div>
+          <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit.</p>
+        </div>
+      </div>
+
+      <div class="recipe-add-comment">
+        <form action="" method="post">
+          <textarea name="comment" id="comment">comment here..</textarea>
+          <button type="submit">Comment</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</body>
+
+</html>

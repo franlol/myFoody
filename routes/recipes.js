@@ -18,7 +18,7 @@ router.get('/add', requireUser, (req, res, next) => {
 });
 
 router.post('/add', requireUser, parser.fields([{ name: 'image' }, { name: 'title' }, { name: 'ingredients' }, { name: 'cookingTime' }, { name: 'description' }]), async (req, res, next) => {
-    const { title, ingredients, cookingTime, description } = req.body;
+    const { _id, title, ingredients, cookingTime, description } = req.body;
     const { categoryMeat, categoryVegetables, categoryFish, categoryBackery } = req.body;
 
     if (!title || !ingredients || !cookingTime || !description) {
@@ -58,8 +58,8 @@ router.post('/add', requireUser, parser.fields([{ name: 'image' }, { name: 'titl
         likes: 0
     };
     try {
-        if (recipe._id) {
-            await Recipe.findByIdAndUpdate(recipe._id, recipe);
+        if (_id) {
+            await Recipe.findByIdAndUpdate(_id, recipe);
         } else {
             const newRecipe = await Recipe.create(recipe);
             await User.findByIdAndUpdate(newRecipe.authorId, { $push: { 'ownRecipes': newRecipe._id.toString() } });
@@ -103,11 +103,10 @@ router.get('/:id/edit', requireUser, async (req, res, next) => {
 
 router.post('/:id/delete', requireUser, async (req, res, next) => {
     const { id } = req.params;
-    // almacenamos el id del usuario
+
     const { _id } = req.session.currentUser;
     try {
         const recipe = await Recipe.findById(id);
-        // queremos que solamente el usuario creador sea capaz de borrar su tortilla, así qe protegemos la ruta con un if.
         if (recipe.authorId.equals(_id)) {
             await Recipe.findByIdAndDelete(id);
         }

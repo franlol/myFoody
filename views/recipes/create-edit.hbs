@@ -20,8 +20,8 @@
     <div class="container">
 
         <form id="form" action="/recipes/add" method="POST" enctype="multipart/form-data">
-        <input hidden type="text" name="ingredients" id="form-ingredients" >
-            <input type='file' id="form-image-input" name="image"/>
+        <input hidden type="text" name="ingredients" id="form-ingredients" value="{{ingredients}}" >
+            <input type='file' id="form-image-input" name="image"/ value="{{photoUrl}}">
             <div class="photo-wrap">
                 <img alt="" src="" id="form-image">
                 <i id="form-camera" class="fas fa-camera"></i>
@@ -47,19 +47,19 @@
             </div>
 
             <label for="title">Title:</label>
-            <input class="form-input" type="text" name="title" id="title">
+            <input class="form-input" type="text" name="title" id="title" value="{{title}}">
 
             <label for="ingredients">Ingredients:</label>
             <input class="form-input" data-role='tags-input'> <!-- value="tomatoe;">-->
 
             <div class="cooking-time-wrap">
                 <label for="cookingTime">Cooking time:</label>
-                <input type="number" default="1" name="cookingTime" id="cookingTime">
+                <input type="number" default="1" name="cookingTime" id="cookingTime" value="{{cookingTime}}">
                 <label for="">mins.</label>
             </div>
 
             <label for="description">Description:</label>
-            <textarea name="description" id="description"></textarea>
+            <textarea name="description" id="description" value="{{description}}"></textarea>
 
             <button id="form-button" type="submit">Add Recipe</button>
         </form>

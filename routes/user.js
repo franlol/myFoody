@@ -13,6 +13,10 @@ router.get('/', requireUser, (req, res, next) => {
     res.render('user/user');
 });
 
+router.get('/own', requireUser, (req, res, next) => {
+    res.render('user/own');
+});
+
 // ROUTE TO FAVORITES -- AQUÍ TENGO UN POCO DE LIO, LA VERDAD
 // router.get('/:id', requireUser, async (req, res, next) => {
 //     const { id } = req.params;

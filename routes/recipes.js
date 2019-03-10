@@ -7,6 +7,7 @@ const parser = require('../middlewares/fileUpload');
 
 // MODELS
 const Recipe = require('../models/Recipe');
+const User = require('../models/User');
 
 //  MIDDLEWARES
 const { requireUser } = require('../middlewares/auth');
@@ -56,29 +57,60 @@ router.post('/add', requireUser, parser.fields([{ name: 'image' }, { name: 'titl
         views: 0,
         likes: 0
     };
-
-    console.log(recipe);
-
-    // ingredients: ingredient1,ingredient2
-    // photoUrl: dorada.jpg
-    // category-meat: on
-    // category-vegetables: on
-    // category-fish: on
-    // category-backery: on
-    // title: title
-    // cookingTime: 213
-    // description: description
-
     try {
-        // if (_id) {
-        //     await Recipe.findByIdAndUpdate(_id, recipe);
-        // } else {
-        //     recipe.authorId = req.session.currentUser._id;
-        //     await Recipe.create(recipe);
-        // }
+        if (recipe._id) {
+            await Recipe.findByIdAndUpdate(recipe._id, recipe);
+        } else {
+            const newRecipe = await Recipe.create(recipe);
+            await User.findByIdAndUpdate(newRecipe.authorId, { $push: { 'ownRecipes': newRecipe._id.toString() } });
+        }
+        res.redirect('/');
+    } catch (error) {
+        next(error);
+    }
+});
 
-        await Recipe.create(recipe);
+router.get('/:id', requireUser, async (req, res, next) => {
+    const { id } = req.params;
+    const { _id } = req.session.currentUser;
+    try {
+        const recipe = await Recipe.findById(id).populate('authorId');
 
+        let isCreator = false;
+        if (recipe.authorId.equals(_id)) {
+            isCreator = true;
+        }
+        res.render('recipes/detail', { recipe, isCreator });
+    } catch (error) {
+        next(error);
+    }
+});
+
+router.get('/:id/edit', requireUser, async (req, res, next) => {
+    const { id } = req.params;
+    const { _id } = req.session.currentUser;
+    try {
+        const recipe = await Recipe.findById(id);
+        if (!recipe.authorId.equals(_id)) {
+            res.redirect('/');
+            return;
+        }
+        res.render('recipes/create-edit', recipe);
+    } catch (error) {
+        next(error);
+    }
+});
+
+router.post('/:id/delete', requireUser, async (req, res, next) => {
+    const { id } = req.params;
+    // almacenamos el id del usuario
+    const { _id } = req.session.currentUser;
+    try {
+        const recipe = await Recipe.findById(id);
+        // queremos que solamente el usuario creador sea capaz de borrar su tortilla, así qe protegemos la ruta con un if.
+        if (recipe.authorId.equals(_id)) {
+            await Recipe.findByIdAndDelete(id);
+        }
         res.redirect('/');
     } catch (error) {
         next(error);

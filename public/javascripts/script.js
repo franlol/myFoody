@@ -46,6 +46,9 @@ $(document).ready(function () {
         return true;
     });
 
+    // Al entrar a una receta, que se muestren las categorias.
+    // TO DO
+
     // Al editar una receta, miramos el array volcado en el input hidden de los checkboxes y si existen los campos los marcamos de azulito
     const categories = document.getElementById('checkbox-edit').value;
     const categoriesArray = categories.split(',');

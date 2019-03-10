@@ -20,6 +20,7 @@ router.get('/add', requireUser, (req, res, next) => {
 router.post('/add', requireUser, parser.fields([{ name: 'image' }, { name: 'title' }, { name: 'ingredients' }, { name: 'cookingTime' }, { name: 'description' }]), async (req, res, next) => {
     const { _id, title, ingredients, cookingTime, description } = req.body;
     const { categoryMeat, categoryVegetables, categoryFish, categoryBackery } = req.body;
+    let { image } = req.body;
 
     if (!title || !ingredients || !cookingTime || !description) {
         res.redirect('/recipes/add');
@@ -41,11 +42,14 @@ router.post('/add', requireUser, parser.fields([{ name: 'image' }, { name: 'titl
         categories.push('backery');
     }
 
-    let image = 'https://res.cloudinary.com/jeseh/image/upload/v1552147136/no-dish.png';
+    if (!image) {
+        image = 'https://res.cloudinary.com/jeseh/image/upload/v1552147136/no-dish.png';
+    }
     if (req.files.image !== undefined) {
         image = req.files.image[0]['url'];
     }
 
+    console.log(image);
     const recipe = {
         title,
         photoUrl: image,
@@ -59,8 +63,10 @@ router.post('/add', requireUser, parser.fields([{ name: 'image' }, { name: 'titl
     };
     try {
         if (_id) {
+            console.log('HAY ID, EXISTIA');
             await Recipe.findByIdAndUpdate(_id, recipe);
         } else {
+            console.log('no hay id, NO EXISTIA');
             const newRecipe = await Recipe.create(recipe);
             await User.findByIdAndUpdate(newRecipe.authorId, { $push: { 'ownRecipes': newRecipe._id.toString() } });
         }

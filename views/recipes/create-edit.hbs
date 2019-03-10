@@ -19,8 +19,11 @@
 <body>
 
     <div class="container">
-
         <form id="form" action="/recipes/add" method="POST" enctype="multipart/form-data">
+            <input type="text" value="{{photoUrl}}" name="image">
+            <input type="text" name="_id" value="{{_id}}" id="">
+            <input type="text" name="ingredients" id="form-ingredients" value="{{ingredients}}">
+
             <input type='file' id="form-image-input" name="image" />
             <div class="photo-wrap">
                 <img alt="" src="{{photoUrl}}" id="form-image">
@@ -51,7 +54,6 @@
             <input class="form-input" type="text" name="title" id="title" value="{{title}}">
 
             <label for="ingredients">Ingredients:</label>
-            <input type="text" name="ingredients" id="form-ingredients" value="{{ingredients}}">
             <input class="form-input" data-role='tags-input' value="{{this.ingredients}}"> <!-- value="tomatoe;">-->
 
             <div class="cooking-time-wrap">

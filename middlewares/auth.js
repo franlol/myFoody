@@ -18,6 +18,7 @@ module.exports = {
         }
         next();
     },
+
     // esta middle ware de aqui la usamos para comprobar que existe o hay usuario y contraseña.
     requireFields (req, res, next) {
     // Extraer el body
@@ -30,4 +31,8 @@ module.exports = {
         }
         next();
     }
+
+    // requireOwner (req, res, next) {
+    // to do
+    // }
 };

@@ -73,21 +73,47 @@ body {
 
 .recipe-title h1 {
     margin: 0;
-    font-size: 1.4em;
-    color: #22264b;
-}
-
-.recipe-title p {
-    margin: 0;
-    padding: 0 0 0 5px;
     font-size: 1.6em;
-    color: #d1ccc0;
+    color: #22264b;
 }
 
 .recipe-title a {
     color: inherit;
     font-size: 1.6em;
     margin: 0 10px 0 auto;
+    color: #2c3e50;
+}
+
+.recipe-title a:last-child {
+    margin: 0;
+    padding: 0 0 0 5px;
+    font-size: 1.6em;
+    color: #d1ccc0;
+}
+
+.recipe-ingredients {
+    padding: 10px;
+}
+
+.recipe-ingredients ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.recipe-ingredients ul li:before {
+    content: "\00BB \0020";
+}
+
+.recipe-description {
+    text-align: justify;
+    /* margin: 5px; */
+    padding: 0 10px;
+    color: #2c3e50;
+}
+
+.recipe-description p {
+    margin: 10px 0 20px;
     color: #2c3e50;
 }
 
@@ -106,18 +132,6 @@ body {
 
 .checkbox-container input {
     height: 0%;
-}
-
-.recipe-description {
-    text-align: justify;
-    /* margin: 5px; */
-    padding: 0 10px;
-    color: #2c3e50;
-}
-
-.recipe-description p {
-    margin: 10px 0 20px;
-    color: #2c3e50;
 }
 
 .recipe-stats {

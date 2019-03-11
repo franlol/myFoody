@@ -95,6 +95,7 @@ router.get('/:id', requireUser, async (req, res, next) => {
 router.get('/:id/edit', requireUser, async (req, res, next) => {
     const { id } = req.params;
     const { _id } = req.session.currentUser;
+
     try {
         const recipe = await Recipe.findById(id);
         if (!recipe.authorId.equals(_id)) {
@@ -109,8 +110,8 @@ router.get('/:id/edit', requireUser, async (req, res, next) => {
 
 router.post('/:id/delete', requireUser, async (req, res, next) => {
     const { id } = req.params;
-
     const { _id } = req.session.currentUser;
+
     try {
         const recipe = await Recipe.findById(id);
         if (recipe.authorId.equals(_id)) {
@@ -122,4 +123,30 @@ router.post('/:id/delete', requireUser, async (req, res, next) => {
     }
 });
 
+router.post('/:id/addFav', async (req, res, next) => {
+    const { id } = req.params;
+    console.log('YAY' + id);
+
+    try {
+        const recipe = await Recipe.findById(id);
+        console.log(recipe);
+    } catch (err) {
+        next(err);
+    }
+});
+
 module.exports = router;
+
+// (async () => {
+//     const rawResponse = await fetch('http://localhost:3000/recipes/5c85560fb8bc1079662e85a5/addFav', {
+//       method: 'POST',
+//       headers: {
+//         'Accept': 'application/json',
+//         'Content-Type': 'application/json'
+//       },
+//       body: JSON.stringify({id: "TEST ID"})
+//     });
+//     const content = await rawResponse.json();
+
+//     console.log(content);
+//   })();

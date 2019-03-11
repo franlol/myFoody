@@ -26,7 +26,15 @@
       <div class="recipe-title">
         <h1>{{recipe.title}}</h1>
         <a href="/recipes/{{recipe._id}}/edit"><i class="far fa-edit"></i></a>
-        <p><i class="fas fa-utensils"></i></p>
+        <a href="/recipes/{{recipe._id}}/addFav"><i class="fas fa-utensils"></i></a>
+      </div>
+
+      <div class="recipe-ingredients">
+        <ul>
+          {{#each recipe.ingredients}}
+          <li>{{this}}</li>
+          {{/each}}
+        </ul>
       </div>
 
       <div class="recipe-description">

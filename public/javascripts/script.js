@@ -76,6 +76,7 @@ $(document).ready(function () {
 
         $('.photo-wrap i').height('0px');
         $('.photo-wrap i').width('0px');
+
         $('.photo-wrap i').css('padding', '0px');
         $('.photo-wrap i').css('padding', '0px');
     }

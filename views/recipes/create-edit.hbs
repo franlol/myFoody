@@ -6,25 +6,32 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
-    <link rel="stylesheet" href="/stylesheets/upload.css">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css"
         integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
 
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
         integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="stylesheet" href="/stylesheets/tags/jquery-tagsinput.min.css">
+    <link rel="stylesheet" href="/stylesheets/upload.css">
 
 </head>
 
 <body>
 
     <div class="container">
-        <form id="form" action="/recipes/add" method="POST" enctype="multipart/form-data">
-            <input type="text" value="{{photoUrl}}" name="image">
-            <input type="text" name="_id" value="{{_id}}" id="">
-            <input type="text" name="ingredients" id="form-ingredients" value="{{ingredients}}">
 
-            <input type='file' id="form-image-input" name="image" />
+        <div class="recipe-back">
+            <a href="/recipes/{{_id}}"><i class="fas fa-chevron-left"></i></a>
+        </div>
+
+        <form id="form" action="/recipes/add" method="POST" enctype="multipart/form-data">
+
+            {{!-- next inputs are for formating data when editing --}}
+            <input class="hidden-inputs" type="text" value="{{photoUrl}}" name="image">
+            <input class="hidden-inputs" type="text" name="_id" value="{{_id}}" id="">
+            <input class="hidden-inputs" type="text" name="ingredients" id="form-ingredients" value="{{ingredients}}">
+            <input class="hidden-inputs" type='file' id="form-image-input" name="image" />
+
             <div class="photo-wrap">
                 <img alt="" src="{{photoUrl}}" id="form-image">
                 <i id="form-camera" class="fas fa-camera"></i>

@@ -9,16 +9,39 @@
 </head>
 
 <body>
-    <h1>PROFILE</h1>
-    <h2>{{currentUser.username}}</h2>
+    <a href="/user/favs">See favs</a>
+    <div class="container">
 
-    <a href="/user/favs">See favs</a><br>
-    <a href="/user/own">See my recipes</a><br>
-    <a href="/recipes/add">Add new recipe</a>
+        <div class="main-cards">
+
+            {{#each ownRecipes}}
+            <div class="card">
+                <input hidden type="text" value="{{this._id}}">
+                <div class="card-img">
+                    <img src="{{this.photoUrl}}" alt="recipe">
+                </div>
+                <h4>{{this.title}}</h4>
+                <hr>
+                <div class="card-options">
+                    <p><i class="far fa-eye"></i> {{this.views}}</p>
+                    <p><i class="fas fa-utensils"></i> {{this.likes}}</p>
+                    <p><i class="far fa-comments"></i> 12</p>
+                </div>
+            </div>
+            {{/each}}
+        </div>
+        <div class="button-add">
+            <a href="/recipes/add"><i class="fas fa-plus"></i></a>
+        </div>
+
+    </div>
+    <form action="/auth/logout" method="POST">
+        <button type="submit">Logout</button>
+    </form>
+    <script src="/javascripts/main.js"></script>
+
 </body>
 
-<form action="/auth/logout" method="POST">
-    <button type="submit">Logout</button>
-</form>
+
 
 </html>

@@ -1,1 +1,52 @@
-<h1>Favs</h1>
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>MyFoody</title>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css"
+        integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+    <link rel="stylesheet" href="./stylesheets/main.css">
+</head>
+
+<body>
+    <div class="container">
+
+        <div class="main-toolbar">
+            <form action="/search" method="post">
+                <input type="text" name="search" id="search" placeholder="Search..">
+                <button class="main-search-button" type="submit"><i class="fas fa-search"></i></button>
+            </form>
+        </div>
+        <div class="main-toolbar-space"></div>
+
+        <div class="main-cards">
+
+            {{#each favRecipes}}
+            <div class="card">
+                <input hidden type="text" value="{{this._id}}">
+                <div class="card-img">
+                    <img src="{{this.photoUrl}}" alt="recipe">
+                </div>
+                <h4>{{this.title}}</h4>
+                <hr>
+                <div class="card-options">
+                    <p><i class="far fa-eye"></i> {{this.views}}</p>
+                    <p><i class="fas fa-utensils"></i> {{this.likes}}</p>
+                    <p><i class="far fa-comments"></i> 12</p>
+                </div>
+            </div>
+            {{/each}}
+        </div>
+        <div class="button-add">
+            <a href="/recipes/add"><i class="fas fa-plus"></i></a>
+        </div>
+
+    </div>
+
+    <script src="/javascripts/main.js"></script>
+</body>
+
+</html>

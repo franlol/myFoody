@@ -3,7 +3,6 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 const ObjectId = Schema.Types.ObjectId;
-const Recipe = require('../models/Recipe');
 
 const userModel = new Schema({
     username: {
@@ -20,12 +19,12 @@ const userModel = new Schema({
     // },
     favRecipes: [{
         type: ObjectId,
-        ref: Recipe
+        ref: 'Recipe'
     }],
-    ownRecipes: {
-        type: [String],
-        default: []
-    },
+    ownRecipes: [{
+        type: ObjectId,
+        ref: 'Recipe'
+    }],
     likes: {
         type: Number,
         default: 0

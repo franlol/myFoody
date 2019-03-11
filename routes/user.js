@@ -6,28 +6,30 @@ const router = express.Router();
 const { requireUser } = require('../middlewares/auth');
 
 // MODELS
-// const Recipe = require('../models/Recipe');
 const User = require('../models/User');
 
 // ROUTES
-router.get('/', requireUser, (req, res, next) => {
-    res.render('user/user');
-});
 
-router.get('/own', requireUser, async (req, res, next) => {
+router.get('/', requireUser, async (req, res, next) => {
     const { _id } = req.session.currentUser;
     try {
-        const ownRecipes = await User.findById(_id).populate('ownRecipes');
-        let isCreator = false;
-
-        res.render('user/own', { ownRecipes, isCreator });
+        const user = await User.findById(_id).populate('ownRecipes');
+        const ownRecipes = user.ownRecipes;
+        res.render('user/user', { ownRecipes });
     } catch (error) {
         next(error);
     }
 });
 
-router.get('/favs', requireUser, (req, res, next) => {
-    res.render('user/favs');
+router.get('/favs', requireUser, async (req, res, next) => {
+    const { _id } = req.session.currentUser;
+    try {
+        const user = await User.findById(_id).populate('favRecipes');
+        const favRecipes = user.favRecipes;
+        res.render('user/favs', { favRecipes });
+    } catch (error) {
+        next(error);
+    }
 });
 
 module.exports = router;

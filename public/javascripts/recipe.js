@@ -29,7 +29,9 @@ const main = () => {
     }
 
     // click en favoritos handler
-    const addFavLink = document.getElementById('recipe-add-fav');
+    const addFavLink = document.getElementById('recipe-add-fav'); // icono
+    const viewsFav = document.getElementById('recipe-stats-likes');
+
     addFavLink.addEventListener('click', async () => {
         const addFav = await favHandler(); // addfav devuelve message y fav
         console.log(addFav);
@@ -38,6 +40,8 @@ const main = () => {
         } else {
             document.getElementById('recipe-add-fav').style.color = '#d1ccc0';
         }
+        // console.log(addFav);
+        viewsFav.textContent = addFav.favTotal;
     });
 
     // Fetch a la Api, favoritos, que recibe una respuesta con la cual despues trabajamos

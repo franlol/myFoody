@@ -26,3 +26,4 @@ Thumbs.db
 .Spotlight*
 .Trashes
 node_modules
+public/images

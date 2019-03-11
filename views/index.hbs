@@ -31,8 +31,12 @@
                 <div class="card-img">
                     <img src="{{this.photoUrl}}" alt="recipe">
                 </div>
-                <h4>{{this.title}}</h4>
+                <div class="card-info">
+                    <h1>{{this.title}}</h1>
+                    <p class="card-author">{{this.authorId.username}}</p>
+                </div>
                 <hr>
+
                 <div class="card-options">
                     <p><i class="far fa-eye"></i> {{this.views}}</p>
                     <p><i class="fas fa-utensils"></i> {{this.likes}}</p>
@@ -51,4 +55,3 @@
 </body>
 
 </html>
-

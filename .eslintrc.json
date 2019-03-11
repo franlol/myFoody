@@ -9,7 +9,8 @@
         "window": false,
         "console": false,
         "$": false,
-        "FileReader": false
+        "FileReader": false,
+        "fetch": false
     },
     "rules": {
         "indent": [

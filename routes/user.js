@@ -4,6 +4,7 @@
 const express = require('express');
 const router = express.Router();
 const { requireUser } = require('../middlewares/auth');
+const parserUser = require('../middlewares/userUpload');
 
 // MODELS
 const User = require('../models/User');
@@ -30,6 +31,11 @@ router.get('/favs', requireUser, async (req, res, next) => {
     } catch (error) {
         next(error);
     }
+});
+
+router.post('/', requireUser, parserUser.single('image'), async (req, res, next) => {
+    console.log(req.file.url);
+    res.redirect('/user');
 });
 
 module.exports = router;

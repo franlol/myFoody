@@ -136,17 +136,4 @@ router.post('/:id/addFav', async (req, res, next) => {
 });
 
 module.exports = router;
-
-// (async () => {
-//     const rawResponse = await fetch('http://localhost:3000/recipes/5c85560fb8bc1079662e85a5/addFav', {
-//       method: 'POST',
-//       headers: {
-//         'Accept': 'application/json',
-//         'Content-Type': 'application/json'
-//       },
-//       body: JSON.stringify({id: "TEST ID"})
-//     });
-//     const content = await rawResponse.json();
-
-//     console.log(content);
-//   })();
+    

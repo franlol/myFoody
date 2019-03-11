@@ -58,9 +58,8 @@ router.post('/add', requireUser, parser.fields([{ name: 'image' }, { name: 'titl
         category: categories,
         ingredients: ingredients.split(','),
         cookingTime,
-        description,
-        views: 0,
-        likes: 0
+        description
+
     };
     try {
         if (_id) {

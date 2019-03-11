@@ -15,7 +15,7 @@ router.get('/', requireUser, async (req, res, next) => {
     try {
         const user = await User.findById(_id).populate('ownRecipes');
         const ownRecipes = user.ownRecipes;
-        res.render('user/user', { ownRecipes });
+        res.render('user/user', { user, ownRecipes });
     } catch (error) {
         next(error);
     }

@@ -25,8 +25,10 @@
     <div class="recipe-info">
       <div class="recipe-title">
         <h1>{{recipe.title}}</h1>
-        <a href="/recipes/{{recipe._id}}/edit"><i class="far fa-edit"></i></a>
-        <a href="/recipes/{{recipe._id}}/addFav"><i class="fas fa-utensils"></i></a>
+        {{#if isCreator}}
+          <a href="/recipes/{{recipe._id}}/edit"><i class="far fa-edit"></i></a>
+        {{/if}}
+        <a id="recipe-add-fav" fav="{{isFav}}" recipe-id="{{recipe._id}}"><i class="fas fa-utensils"></i></a>
       </div>
 
       <div class="recipe-ingredients">

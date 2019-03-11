@@ -106,7 +106,12 @@ router.get('/:id', requireUser, async (req, res, next) => {
             if (recipe.authorId.equals(_id)) {
                 isCreator = true;
             }
-            res.render('recipes/recipe', { recipe, isCreator });
+            const favRecipes = recipe.authorId.favRecipes;
+            const isFav = favRecipes.some((recipe) => {
+                return recipe._id.equals(mongoose.Types.ObjectId(id));
+            });
+            if (isFav) console.log('yes');
+            res.render('recipes/recipe', { recipe, isCreator, isFav });
         } else {
             return res.redirect('/');
         }
@@ -162,21 +167,19 @@ router.put('/:id/addFav', async (req, res, next) => {
                 });
                 if (!exists) {
                     await User.findByIdAndUpdate({ _id: userId }, { $push: { favRecipes: recipe } }, { new: true });
-                    // await user.push(id);
-                    return res.status(200).json({ 'message': 'Recipe added to favourites.' });
+                    return res.status(200).json({ 'message': 'Recipe added to favourites.', 'fav': 'true' });
                 } else {
                     await User.findByIdAndUpdate({ _id: userId }, { $pull: { favRecipes: id } }, { new: true });
-                    // user.favRecipes.pull({ _id: id });
-                    return res.status(200).json({ 'message': 'Recipe removed from favourites.' });
+                    return res.status(200).json({ 'message': 'Recipe removed from favourites.', 'fav': 'false' });
                 }
             } else {
-                return res.status(404).json({ 'message': '404 No content.' });
+                return res.status(404).json({ 'message': '404 No content.', 'fav': 'false' });
             }
         } catch (err) {
             next(err);
         }
     } else {
-        return res.status(401).json({ 'message': '401 - No authorized.' });
+        return res.status(401).json({ 'message': '401 - No authorized.', 'fav': 'false' });
     }
 
     // (async () => {

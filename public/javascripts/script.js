@@ -75,7 +75,8 @@ $(document).ready(function () {
         $('.photo-wrap img').height('100%');
 
         $('.photo-wrap i').height('0px');
-        $('.photo-wrap i').width('0px');
+        $('.photo-wrap i').width('0px'); // por alguna razon jquery no lanza este coando (es valido, en consola va.)
+        document.querySelector('.photo-wrap i').style.width = '0px'; // por eso lo pongo aqui en js puro
 
         $('.photo-wrap i').css('padding', '0px');
         $('.photo-wrap i').css('padding', '0px');

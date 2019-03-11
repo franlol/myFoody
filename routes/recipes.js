@@ -4,6 +4,7 @@
 const express = require('express');
 const router = express.Router();
 const parser = require('../middlewares/fileUpload');
+const mongoose = require('mongoose');
 
 // MODELS
 const Recipe = require('../models/Recipe');
@@ -76,17 +77,39 @@ router.post('/add', requireUser, parser.fields([{ name: 'image' }, { name: 'titl
     }
 });
 
+// router.get('/:id', requireUser, async (req, res, next) => {
+//     const { id } = req.params;
+//     const { _id } = req.session.currentUser;
+//     try {
+//         const recipe = await Recipe.findById(id).populate('authorId');
+//         if (recipe) {
+//             let isCreator = false;
+//             if (recipe.authorId.equals(_id)) {
+//                 isCreator = true;
+//             }
+//             res.render('recipes/recipe', { recipe, isCreator });
+//         } else {
+//             return res.redirect('/');
+//         }
+//     } catch (error) {
+//         next(error);
+//     }
+// });
+
 router.get('/:id', requireUser, async (req, res, next) => {
     const { id } = req.params;
     const { _id } = req.session.currentUser;
     try {
-        const recipe = await Recipe.findById(id).populate('authorId');
-
-        let isCreator = false;
-        if (recipe.authorId.equals(_id)) {
-            isCreator = true;
+        const recipe = await Recipe.findOneAndUpdate({ _id: id }, { $inc: { views: 1 } }, { new: true }).populate('authorId');
+        if (recipe) {
+            let isCreator = false;
+            if (recipe.authorId.equals(_id)) {
+                isCreator = true;
+            }
+            res.render('recipes/recipe', { recipe, isCreator });
+        } else {
+            return res.redirect('/');
         }
-        res.render('recipes/recipe', { recipe, isCreator });
     } catch (error) {
         next(error);
     }
@@ -123,30 +146,52 @@ router.post('/:id/delete', requireUser, async (req, res, next) => {
     }
 });
 
-router.post('/:id/addFav', async (req, res, next) => {
+// API
+router.put('/:id/addFav', async (req, res, next) => {
     const { id } = req.params;
-    console.log('YAY' + id);
+    const userId = req.session.currentUser._id;
+    console.log('Adding favourite: ' + id);
 
-    try {
-        const recipe = await Recipe.findById(id);
-        console.log(recipe);
-    } catch (err) {
-        next(err);
+    if (id && userId) {
+        try {
+            const recipe = await Recipe.findById(id);
+            if (recipe) {
+                const user = await User.findOne({ _id: userId }).lean();
+                let exists = user.favRecipes.some((fav) => {
+                    return fav.equals(mongoose.Types.ObjectId(id));
+                });
+                if (!exists) {
+                    await User.findByIdAndUpdate({ _id: userId }, { $push: { favRecipes: recipe } }, { new: true });
+                    // await user.push(id);
+                    return res.status(200).json({ 'message': 'Recipe added to favourites.' });
+                } else {
+                    await User.findByIdAndUpdate({ _id: userId }, { $pull: { favRecipes: id } }, { new: true });
+                    // user.favRecipes.pull({ _id: id });
+                    return res.status(200).json({ 'message': 'Recipe removed from favourites.' });
+                }
+            } else {
+                return res.status(404).json({ 'message': '404 No content.' });
+            }
+        } catch (err) {
+            next(err);
+        }
+    } else {
+        return res.status(401).json({ 'message': '401 - No authorized.' });
     }
+
+    // (async () => {
+    //     const rawResponse = await fetch('http://localhost:3000/recipes/5c85560fb8bc1079662e85a5/addFav', {
+    //       method: 'PUT',
+    //       headers: {
+    //         'Accept': 'application/json',
+    //         'Content-Type': 'application/json'
+    //       },
+
+    //   body: JSON.stringify({id: "TEST ID"})
+    //     });
+    //     const content = await rawResponse.json();
+
+    //     console.log(content);
+    //   })();
 });
-
 module.exports = router;
-
-// (async () => {
-//     const rawResponse = await fetch('http://localhost:3000/recipes/5c85560fb8bc1079662e85a5/addFav', {
-//       method: 'POST',
-//       headers: {
-//         'Accept': 'application/json',
-//         'Content-Type': 'application/json'
-//       },
-//       body: JSON.stringify({id: "TEST ID"})
-//     });
-//     const content = await rawResponse.json();
-
-//     console.log(content);
-//   })();

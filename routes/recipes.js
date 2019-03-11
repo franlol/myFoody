@@ -58,9 +58,8 @@ router.post('/add', requireUser, parser.fields([{ name: 'image' }, { name: 'titl
         category: categories,
         ingredients: ingredients.split(','),
         cookingTime,
-        description,
-        views: 0,
-        likes: 0
+        description
+
     };
     try {
         if (_id) {
@@ -155,7 +154,7 @@ router.post('/:id/delete', requireUser, async (req, res, next) => {
 router.put('/:id/addFav', async (req, res, next) => {
     const { id } = req.params;
     const userId = req.session.currentUser._id;
-    console.log('Adding favourite: ' + id);
+
     if (!id || !userId) {
         return res.status(401).json({ 'message': '401 - No authorized.', 'fav': 'false' });
     }
@@ -175,7 +174,7 @@ router.put('/:id/addFav', async (req, res, next) => {
         let response;
 
         if (!isInFavorites) {
-            updateFavorites = { $push: { favRecipes: recipe } };
+            updateFavorites = { $push: { favRecipes: id } };
             updateLikes = { $inc: { likes: +1 } };
             response = { 'message': 'Recipe added to favourites.', 'fav': 'true' };
         } else {
@@ -183,9 +182,10 @@ router.put('/:id/addFav', async (req, res, next) => {
             updateLikes = { $inc: { likes: -1 } };
             response = { 'message': 'Recipe removed from favourites.', 'fav': 'false' };
         }
+
         await User.findByIdAndUpdate(userId, updateFavorites);
         const updatedRecipe = await Recipe.findByIdAndUpdate(id, updateLikes, { new: true });
-        console.log(updatedRecipe);
+
         response.favTotal = updatedRecipe.likes;
         return res.status(200).json(response);
     } catch (err) {

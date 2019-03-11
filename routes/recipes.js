@@ -156,33 +156,40 @@ router.put('/:id/addFav', async (req, res, next) => {
     const { id } = req.params;
     const userId = req.session.currentUser._id;
     console.log('Adding favourite: ' + id);
-    if (id && userId) {
-        try {
-            const recipe = await Recipe.findById(id);
-            if (recipe) {
-                const user = await User.findOne({ _id: userId }).lean();
-                let exists = user.favRecipes.some((fav) => {
-                    return fav.equals(mongoose.Types.ObjectId(id));
-                });
-                if (!exists) {
-                    await User.findByIdAndUpdate({ _id: userId }, { $push: { favRecipes: recipe } });
-                    const updatedRecipe = await Recipe.findByIdAndUpdate(id, { $inc: { likes: +1 } }, { new: true });
-                    console.log(updatedRecipe);
-                    return res.status(200).json({ 'message': 'Recipe added to favourites.', 'fav': 'true', 'favTotal': updatedRecipe.likes });
-                } else {
-                    await User.findByIdAndUpdate({ _id: userId }, { $pull: { favRecipes: id } }, { new: true });
-                    const updatedRecipe = await Recipe.findByIdAndUpdate(id, { $inc: { likes: -1 } }, { new: true });
-                    console.log(updatedRecipe);
-                    return res.status(200).json({ 'message': 'Recipe removed from favourites.', 'fav': 'false', 'favTotal': updatedRecipe.likes });
-                }
-            } else {
-                return res.status(404).json({ 'message': '404 No content.', 'fav': 'false' });
-            }
-        } catch (err) {
-            next(err);
-        }
-    } else {
+    if (!id || !userId) {
         return res.status(401).json({ 'message': '401 - No authorized.', 'fav': 'false' });
+    }
+    try {
+        const recipe = await Recipe.findById(id);
+        if (!recipe) {
+            return res.status(404).json({ 'message': '404 Not found', 'fav': 'false' });
+        }
+        const user = await User.findOne({ _id: userId }).lean();
+
+        let isInFavorites = user.favRecipes.some((fav) => {
+            return fav.equals(mongoose.Types.ObjectId(id));
+        });
+
+        let updateFavorites;
+        let updateLikes;
+        let response;
+
+        if (!isInFavorites) {
+            updateFavorites = { $push: { favRecipes: recipe } };
+            updateLikes = { $inc: { likes: +1 } };
+            response = { 'message': 'Recipe added to favourites.', 'fav': 'true' };
+        } else {
+            updateFavorites = { $pull: { favRecipes: id } };
+            updateLikes = { $inc: { likes: -1 } };
+            response = { 'message': 'Recipe removed from favourites.', 'fav': 'false' };
+        }
+        await User.findByIdAndUpdate(userId, updateFavorites);
+        const updatedRecipe = await Recipe.findByIdAndUpdate(id, updateLikes, { new: true });
+        console.log(updatedRecipe);
+        response.favTotal = updatedRecipe.likes;
+        return res.status(200).json(response);
+    } catch (err) {
+        next(err);
     }
 
     // (async () => {

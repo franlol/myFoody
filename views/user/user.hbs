@@ -5,6 +5,78 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="/stylesheets/user.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css"
+        integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+    <title>Profile</title>
+</head>
+
+<body>
+    <div class="container">
+        <div class="recipe-back">
+            <a href="/"><i class="fas fa-chevron-left"></i></a>
+        </div>
+        <div class="recipe-edit">
+            <a href="/"><i class="fas fa-pencil-alt"></i></i></a>
+        </div>
+
+        <div class="profile-photo-wrap">
+            <img src="/images/anon-ico.png" alt="img profile">
+        </div>
+        <div class="profile-info">
+            <h1>{{user.username}}</h1>
+            <p><i class="fas fa-utensils"></i> {{user.likes}}</p>
+        </div>
+        <div class="profile-logout">
+            <form action="/auth/logout" method="post">
+                <a href="/auth/logout">Sign off</a>
+                <button type="submit">Sign off</button>
+            </form>
+        </div>
+        <div class="profile-nav">
+            <nav>
+                <button>Own</button>
+                <button>Favourites</button>
+            </nav>
+        </div>
+        <hr class="profile-hr">
+        <div class="profile-own-recipes">
+            {{#each ownRecipes}}
+            <div class="card">
+                <input hidden type="text" value="{{this._id}}">
+                <div class="card-img">
+                    <img src="{{this.photoUrl}}" alt="recipe">
+                </div>
+                <div class="card-info">
+                    <h1>{{this.title}}</h1>
+                    <p class="card-author">{{this.authorId.username}}</p>
+                </div>
+                <hr>
+
+                <div class="card-options">
+                    <p><i class="far fa-eye"></i> {{this.views}}</p>
+                    <p><i class="fas fa-utensils"></i> {{this.likes}}</p>
+                    <p><i class="far fa-comments"></i> 12</p>
+                </div>
+            </div>
+            {{/each}}
+        </div>
+        <div class="profile-fav-recipes">
+
+        </div>
+    </div>
+    <script src="/javascripts/user.js"></script>
+</body>
+
+</html>
+
+{{!-- <!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
 </head>
 
@@ -54,4 +126,4 @@
 
 
 
-</html>
+</html> --}}

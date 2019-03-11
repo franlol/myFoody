@@ -107,11 +107,10 @@ router.get('/:id', requireUser, async (req, res, next) => {
             if (recipe.authorId.equals(_id)) {
                 isCreator = true;
             }
-            const favRecipes = recipe.authorId.favRecipes;
-            const isFav = favRecipes.some((recipe) => {
+            const user = await User.findById(_id);
+            const isFav = user.favRecipes.some((recipe) => {
                 return recipe._id.equals(mongoose.Types.ObjectId(id));
             });
-            if (isFav) console.log('yes');
             res.render('recipes/recipe', { recipe, isCreator, isFav });
         } else {
             return res.redirect('/');
@@ -157,7 +156,6 @@ router.put('/:id/addFav', async (req, res, next) => {
     const { id } = req.params;
     const userId = req.session.currentUser._id;
     console.log('Adding favourite: ' + id);
-
     if (id && userId) {
         try {
             const recipe = await Recipe.findById(id);
@@ -167,11 +165,15 @@ router.put('/:id/addFav', async (req, res, next) => {
                     return fav.equals(mongoose.Types.ObjectId(id));
                 });
                 if (!exists) {
-                    await User.findByIdAndUpdate({ _id: userId }, { $push: { favRecipes: recipe } }, { new: true });
-                    return res.status(200).json({ 'message': 'Recipe added to favourites.', 'fav': 'true' });
+                    await User.findByIdAndUpdate({ _id: userId }, { $push: { favRecipes: recipe } });
+                    const updatedRecipe = await Recipe.findByIdAndUpdate(id, { $inc: { likes: +1 } }, { new: true });
+                    console.log(updatedRecipe);
+                    return res.status(200).json({ 'message': 'Recipe added to favourites.', 'fav': 'true', 'favTotal': updatedRecipe.likes });
                 } else {
                     await User.findByIdAndUpdate({ _id: userId }, { $pull: { favRecipes: id } }, { new: true });
-                    return res.status(200).json({ 'message': 'Recipe removed from favourites.', 'fav': 'false' });
+                    const updatedRecipe = await Recipe.findByIdAndUpdate(id, { $inc: { likes: -1 } }, { new: true });
+                    console.log(updatedRecipe);
+                    return res.status(200).json({ 'message': 'Recipe removed from favourites.', 'fav': 'false', 'favTotal': updatedRecipe.likes });
                 }
             } else {
                 return res.status(404).json({ 'message': '404 No content.', 'fav': 'false' });

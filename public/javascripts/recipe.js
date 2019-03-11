@@ -32,6 +32,7 @@ const main = () => {
     const addFavLink = document.getElementById('recipe-add-fav');
     addFavLink.addEventListener('click', async () => {
         const addFav = await favHandler(); // addfav devuelve message y fav
+        console.log(addFav);
         if (addFav.fav === 'true') {
             document.getElementById('recipe-add-fav').style.color = '#22264b';
         } else {
@@ -39,6 +40,7 @@ const main = () => {
         }
     });
 
+    // Fetch a la Api, favoritos, que recibe una respuesta con la cual despues trabajamos
     const favHandler = async () => {
         const recipeId = document.getElementById('recipe-add-fav').getAttribute('recipe-id');
         // console.log(window.location.hostname);
@@ -56,10 +58,11 @@ const main = () => {
 
     // Load page, favoritos handler
     const loadFavs = document.getElementById('recipe-add-fav').getAttribute('fav');
-    // console.log(loadFavs);
     if (loadFavs === 'true') {
         document.getElementById('recipe-add-fav').style.color = '#22264b';
     }
+
+    // al clickar en favoritos, actualizar el contador
 };
 
 window.addEventListener('load', main);

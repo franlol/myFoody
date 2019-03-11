@@ -15,9 +15,8 @@ router.get('/', requireUser, async (req, res, next) => {
     const { _id } = req.session.currentUser;
     try {
         const user = await User.findById(_id).populate('ownRecipes');
-        let likes = user.likes;
         const ownRecipes = user.ownRecipes;
-        res.render('user/user', { ownRecipes, likes });
+        res.render('user/user', { user, ownRecipes });
     } catch (error) {
         next(error);
     }
@@ -36,6 +35,7 @@ router.get('/favs', requireUser, async (req, res, next) => {
 
 router.post('/', requireUser, parserUser.single('image'), async (req, res, next) => {
     console.log(req.file.url);
+    res.redirect('/user');
 });
 
 module.exports = router;

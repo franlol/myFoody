@@ -14,7 +14,8 @@ const userModel = new Schema({
         required: true
     },
     imageUrl: {
-        type: String
+        type: String,
+        default: 'https://res.cloudinary.com/jeseh/image/upload/v1552329194/user.png'
     },
     // email: {
     //     type: String,

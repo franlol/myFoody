@@ -159,7 +159,7 @@ router.put('/:id/addFav', async (req, res, next) => {
         return res.status(401).json({ 'message': '401 - No authorized.', 'fav': 'false' });
     }
     try {
-        const recipe = await Recipe.findById(id);
+        const recipe = await Recipe.findById(id).populate('authorId');
         if (!recipe) {
             return res.status(404).json({ 'message': '404 Not found', 'fav': 'false' });
         }
@@ -184,6 +184,8 @@ router.put('/:id/addFav', async (req, res, next) => {
         }
 
         await User.findByIdAndUpdate(userId, updateFavorites);
+        await User.findByIdAndUpdate(recipe.authorId._id, updateLikes);
+
         const updatedRecipe = await Recipe.findByIdAndUpdate(id, updateLikes, { new: true });
 
         response.favTotal = updatedRecipe.likes;

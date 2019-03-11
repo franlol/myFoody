@@ -28,7 +28,7 @@
         {{#if isCreator}}
           <a href="/recipes/{{recipe._id}}/edit"><i class="far fa-edit"></i></a>
         {{/if}}
-        <a id="recipe-add-fav" fav="{{isFav}}" recipe-id="{{recipe._id}}"><i class="fas fa-utensils"></i></a>
+        <a id="recipe-add-fav" fav="{{isFav}}" recipe-id="{{recipe._id}}"><i class="fas fa-utensils"></i></a><!-- si el isfav nos llega a true, con el frontend coloreamos el icono azul, reflejando que es favorito -->
       </div>
 
       <div class="recipe-ingredients">

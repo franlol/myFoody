@@ -9,6 +9,12 @@ const main = () => {
     p.innerHTML = descriptionReplaced;
 
     // formatear los coments para reemplazar los \b por los <br>
+    let comments = document.querySelectorAll('.recipe-comment-content');
+    comments.forEach((comment) => {
+        let content = comment.innerHTML.replace(/\n/g, '<br>');
+        console.log(comment);
+        comment.innerHTML = content;
+    });
 
     // Marcar los checkboxes y colorear dependiendo de las categorias
     const categories = document.getElementById('checkbox-info').value;

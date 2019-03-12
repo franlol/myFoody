@@ -196,6 +196,11 @@ hr {
     color: #22264b;
 }
 
+.recipe-comments-header h2 a {
+    text-decoration: none;
+    color: inherit;
+}
+
 .recipe-comments-header p {
     font-size: 0.8em;
     color: #22264b;

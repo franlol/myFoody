@@ -5,6 +5,7 @@ const express = require('express');
 const router = express.Router();
 const parser = require('../middlewares/fileUpload');
 const mongoose = require('mongoose');
+const moment = require('moment');
 
 // MODELS
 const Recipe = require('../models/Recipe');
@@ -122,6 +123,7 @@ router.get('/:id', requireUser, async (req, res, next) => {
             const isFav = user.favRecipes.some((recipe) => {
                 return recipe._id.equals(mongoose.Types.ObjectId(id));
             });
+
             res.render('recipes/recipe', { recipe, isCreator, isFav });
         } else {
             return res.redirect('/');
@@ -136,13 +138,14 @@ router.post('/:id', async (req, res, next) => {
     const { content } = req.body;
     if (!content) {
         res.redirect(`/recipes/${id}`);
-        console.log('FUCK YOU - middleware require-Form');
+        console.log('FUCK YOU - comment without content');
         return;
     }
+    const date = moment().format('YYYY-MM-DD');
     const recipeComment = {
         content,
-        authorId: req.session.currentUser._id
-
+        authorId: req.session.currentUser._id,
+        date
     };
     try {
         const newRecipeComment = await Comment.create(recipeComment);

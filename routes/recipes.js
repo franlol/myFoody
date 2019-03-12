@@ -65,14 +65,15 @@ router.post('/add', requireUser, parser.fields([{ name: 'image' }, { name: 'titl
     try {
         if (_id) {
             console.log('HAY ID, EXISTIA');
-            await Recipe.findByIdAndUpdate(_id, recipe);
+            const updatedRecipe = await Recipe.findByIdAndUpdate(_id, recipe, { new: true });
+            res.redirect('/recipes/' + updatedRecipe._id);
         } else {
             console.log('no hay id, NO EXISTIA');
             const newRecipe = await Recipe.create(recipe);
             const adding = await User.findByIdAndUpdate(newRecipe.authorId, { $push: { 'ownRecipes': newRecipe } }, { new: true });
             console.log(adding);
+            res.redirect('/recipes/' + newRecipe._id);
         }
-        res.redirect('/');
     } catch (error) {
         next(error);
     }

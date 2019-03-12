@@ -25,10 +25,19 @@
     <div class="recipe-info">
       <div class="recipe-title">
         <h1>{{recipe.title}}</h1>
-        {{#if isCreator}}
+
+        <div class="recipe-actions">
+          <p>{{recipe.authorId.username}}</p>
+          {{#if isCreator}}
+          <form action="/recipes/{{recipe.id}}/delete" method="post">
+            <button><i class="far fa-trash-alt"></i></button>
+          </form>
           <a href="/recipes/{{recipe._id}}/edit"><i class="far fa-edit"></i></a>
-        {{/if}}
-        <a id="recipe-add-fav" fav="{{isFav}}" recipe-id="{{recipe._id}}"><i class="fas fa-utensils"></i></a><!-- si el isfav nos llega a true, con el frontend coloreamos el icono azul, reflejando que es favorito -->
+          {{/if}}
+          <a id="recipe-add-fav" fav="{{isFav}}" recipe-id="{{recipe._id}}"><i class="fas fa-utensils"></i></a>
+          <!-- si el isfav nos llega a true, con el frontend coloreamos el icono azul, reflejando que es favorito -->
+        </div>
+        
       </div>
 
       <div class="recipe-ingredients">
@@ -65,7 +74,9 @@
 
         <div class="recipe-stats">
           <p><i class="far fa-eye"></i> {{recipe.views}}</p>
-          <p><i class="fas fa-utensils"></i><p id="recipe-stats-likes">{{recipe.likes}}</p></p>
+          <p><i class="fas fa-utensils"></i>
+            <p id="recipe-stats-likes">{{recipe.likes}}</p>
+          </p>
           <p><i class="far fa-clock"></i> {{recipe.cookingTime}}</p>
         </div>
       </div>

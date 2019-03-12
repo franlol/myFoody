@@ -9,6 +9,7 @@ const mongoose = require('mongoose');
 // MODELS
 const Recipe = require('../models/Recipe');
 const User = require('../models/User');
+const Comment = require('../models/Comment');
 
 //  MIDDLEWARES
 const { requireUser } = require('../middlewares/auth');
@@ -114,6 +115,28 @@ router.get('/:id', requireUser, async (req, res, next) => {
         } else {
             return res.redirect('/');
         }
+    } catch (error) {
+        next(error);
+    }
+});
+
+router.post('/:id', async (req, res, next) => {
+    const { id } = req.params;
+    const { content } = req.body;
+    if (!content) {
+        res.redirect(`/recipes/${id}`);
+        console.log('FUCK YOU - middleware require-Form');
+        return;
+    }
+    const recipeComment = {
+        content,
+        authorId: req.session.currentUser._id
+
+    };
+    try {
+        const newRecipeComment = await Comment.create(recipeComment);
+        await Recipe.findByIdAndUpdate(id, { $push: { 'comments': newRecipeComment._id } }, { new: true });
+        res.redirect(`/recipes/${id}`);
     } catch (error) {
         next(error);
     }

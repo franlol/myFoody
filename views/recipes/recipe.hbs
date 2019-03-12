@@ -104,8 +104,8 @@
       </div>
 
       <div class="recipe-add-comment">
-        <form action="" method="post">
-          <textarea name="comment" id="comment">comment here..</textarea>
+        <form action="/recipes/{{recipe._id}}" method="POST">
+          <textarea name="content" id="comment">comment here..</textarea>
           <button type="submit">Comment</button>
         </form>
       </div>

@@ -102,7 +102,17 @@ router.get('/:id', requireUser, async (req, res, next) => {
     const { id } = req.params;
     const { _id } = req.session.currentUser;
     try {
-        const recipe = await Recipe.findOneAndUpdate({ _id: id }, { $inc: { views: 1 } }, { new: true }).populate('authorId');
+        const recipe = await Recipe.findOneAndUpdate({ _id: id }, { $inc: { views: 1 } }, { new: true })
+            .populate('authorId')
+            .populate({
+                path: 'comments',
+                populate: {
+                    path: 'authorId',
+                    model: 'User'
+                }
+            });
+        // console.log(recipe.comments[1].authorId.username);
+
         if (recipe) {
             let isCreator = false;
             if (recipe.authorId.equals(_id)) {

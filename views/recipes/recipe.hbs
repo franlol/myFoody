@@ -37,7 +37,7 @@
           <a id="recipe-add-fav" fav="{{isFav}}" recipe-id="{{recipe._id}}"><i class="fas fa-utensils"></i></a>
           <!-- si el isfav nos llega a true, con el frontend coloreamos el icono azul, reflejando que es favorito -->
         </div>
-        
+
       </div>
 
       <div class="recipe-ingredients">
@@ -98,32 +98,31 @@
           </p>
         </div>
 
-        <div class="recipe-comment">
-          <div class="recipe-comments-header">
-            <h2>franlol</h2>
-            <p>23/12/2018</p>
+        {{#each recipe.comments}}
+
+        <div class="recipe-comments">
+          <div class="recipe-comment">
+            <div class="recipe-comments-header">
+              <h2>{{this.authorId.username}}</h2>
+              <p>{{this.content}}</p>
+            </div>
+            <p>{{this.authorId.content}}
+            </p>
           </div>
-          <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit.</p>
         </div>
-        <div class="recipe-comment">
-          <div class="recipe-comments-header">
-            <h2>franlol</h2>
-            <p>23/12/2018</p>
-          </div>
-          <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit.</p>
+        {{/each}}
+
+
+
+        <div class="recipe-add-comment">
+          <form action="/recipes/{{recipe._id}}" method="POST">
+            <textarea name="content" id="comment" placeholder="Your comment here.."></textarea>
+            <button type="submit">Comment</button>
+          </form>
         </div>
       </div>
 
-      <div class="recipe-add-comment">
-        <form action="/recipes/{{recipe._id}}" method="POST">
-          <textarea name="content" id="comment">comment here..</textarea>
-          <button type="submit">Comment</button>
-        </form>
-      </div>
-    </div>
-  </div>
-
-  <script src="/javascripts/recipe.js"></script>
+      <script src="/javascripts/recipe.js"></script>
 </body>
 
 </html>

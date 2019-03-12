@@ -22,6 +22,17 @@ router.get('/', requireUser, async (req, res, next) => {
     }
 });
 
+router.get('/:id', requireUser, async (req, res, next) => {
+    const { id } = req.params;
+    const { _id } = req.session.currentUser;
+    try {
+        
+        res.render('user/user');
+    } catch (error) {
+        next(error);
+    }
+});
+
 router.get('/favs', requireUser, async (req, res, next) => {
     const { _id } = req.session.currentUser;
     try {
@@ -34,7 +45,6 @@ router.get('/favs', requireUser, async (req, res, next) => {
 });
 
 router.post('/', requireUser, parserUser.single('image'), async (req, res, next) => {
-    console.log(req.file.url);
     res.redirect('/user');
 });
 

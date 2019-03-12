@@ -34,7 +34,7 @@ const main = () => {
 
     addFavLink.addEventListener('click', async () => {
         const addFav = await favHandler(); // addfav devuelve message y fav
-        console.log(addFav);
+        // console.log(addFav);
         if (addFav.fav === 'true') {
             document.getElementById('recipe-add-fav').style.color = '#22264b';
         } else {

@@ -16,7 +16,7 @@ const main = () => {
     buttonProfile.addEventListener('click', (e) => {
         e.preventDefault();
         console.log('asd');
-        window.location.href += 'user';
+        window.location.href = '/user';
     });
 };
 

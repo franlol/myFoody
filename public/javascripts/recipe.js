@@ -65,8 +65,6 @@ const main = () => {
     if (loadFavs === 'true') {
         document.getElementById('recipe-add-fav').style.color = '#22264b';
     }
-
-    // al clickar en favoritos, actualizar el contador
 };
 
 window.addEventListener('load', main);

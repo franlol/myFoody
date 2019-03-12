@@ -107,6 +107,10 @@ body {
     padding-left: 10px;
 }
 
+#recipe-add-fav {
+    color: #d1ccc0;
+}
+
 .recipe-ingredients {
     padding: 10px;
 }

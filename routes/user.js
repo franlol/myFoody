@@ -33,9 +33,22 @@ router.get('/favs', requireUser, async (req, res, next) => {
     }
 });
 
+// UPLOAD USER PROFILE IMG
 router.post('/', requireUser, parserUser.single('image'), async (req, res, next) => {
-    console.log(req.file.url);
-    res.redirect('/user');
+    const { _id } = req.session.currentUser;
+    console.log('in upload');
+    const user = await User.findById(_id);
+
+    if (!_id || req.file === undefined) {
+        console.log('fail');
+
+        return res.redirect('/user');
+    }
+
+    user.imageUrl = req.file.url; // img url
+    user.save();
+    console.log('yes?');
+    return res.redirect('/user');
 });
 
 module.exports = router;

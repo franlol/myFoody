@@ -13,15 +13,21 @@
 
 <body>
     <div class="container">
+
+        <form hidden action="/user" method="POST" enctype="multipart/form-data">
+            <input type="file" name="image">
+            <button type="submit">Upload</button>
+        </form>
+
         <div class="recipe-back">
             <a href="/"><i class="fas fa-chevron-left"></i></a>
         </div>
         <div class="recipe-edit">
-            <a href="/"><i class="fas fa-pencil-alt"></i></i></a>
+            <a><i class="fas fa-pencil-alt"></i></i></a>
         </div>
 
         <div class="profile-photo-wrap">
-            <img src="/images/anon-ico.png" alt="img profile">
+            <img src="{{user.imageUrl}}" alt="img profile">
         </div>
         <div class="profile-info">
             <h1>{{user.username}}</h1>

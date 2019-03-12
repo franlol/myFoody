@@ -8,6 +8,7 @@ const parserUser = require('../middlewares/userUpload');
 
 // MODELS
 const User = require('../models/User');
+const Recipe = require('../models/Recipe');
 
 // ROUTES
 
@@ -28,10 +29,14 @@ router.get('/:id', requireUser, async (req, res, next) => {
 
     let isOwner = true;
     if (id === _id) {
-        return res.redirect('/user');
+        const user = await User.findById(_id).populate('ownRecipes');
+        const ownRecipes = user.ownRecipes;
+        return res.render('user/user', { isOwner, ownRecipes });
     } else {
+        const user = await User.findById(id).populate('ownRecipes');
+        const ownRecipes = user.ownRecipes;
         isOwner = false;
-        return res.render('user/user', { isOwner });
+        return res.render('user/user', { isOwner, ownRecipes });
     }
 });
 

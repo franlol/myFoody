@@ -13,33 +13,47 @@
 
 <body>
     <div class="container">
+
+
+        <form hidden action="/user" method="POST" enctype="multipart/form-data">
+            <input type="file" name="image">
+            <button type="submit">Upload</button>
+        </form>
+
         <div class="recipe-back">
             <a href="/"><i class="fas fa-chevron-left"></i></a>
         </div>
+
         <div class="recipe-edit">
-            <a href="/"><i class="fas fa-pencil-alt"></i></i></a>
+            <a><i class="fas fa-pencil-alt"></i></i></a>
         </div>
 
         <div class="profile-photo-wrap">
-            <img src="/images/anon-ico.png" alt="img profile">
+            <img src="{{user.imageUrl}}" alt="img profile">
         </div>
         <div class="profile-info">
             <h1>{{user.username}}</h1>
             <p><i class="fas fa-utensils"></i> {{user.likes}}</p>
         </div>
-        <div class="profile-logout">
-            <form action="/auth/logout" method="post">
-                <a href="/auth/logout">Sign off</a>
-                <button type="submit">Sign off</button>
-            </form>
-        </div>
+
+        {{#if isOwner}}
+            <div class="profile-logout">
+                <form action="/auth/logout" method="post">
+                    <a href="/auth/logout">Sign off</a>
+                    <button type="submit">Sign off</button>
+                </form>
+            </div>
+
         <div class="profile-nav">
             <nav>
                 <button>Own</button>
                 <button>Favourites</button>
             </nav>
         </div>
+        {{/if}}
+
         <hr class="profile-hr">
+        
         <div class="profile-own-recipes">
             {{#each ownRecipes}}
             <div class="card">
@@ -61,9 +75,12 @@
             </div>
             {{/each}}
         </div>
-        <div class="profile-fav-recipes">
 
+        {{#if isOwner}}
+        <div class="profile-fav-recipes">
         </div>
+        {{/if}}
+
     </div>
     <script src="/javascripts/user.js"></script>
 </body>

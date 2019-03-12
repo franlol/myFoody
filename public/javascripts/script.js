@@ -1,6 +1,7 @@
 $(document).ready(function () {
     // input tags: <!-- https://www.jqueryscript.net/form/Tagging-Input-Bootstrap-4.html -->
     $('[data-role="tags-input"]').tagsInput();
+
     function readURL (input) {
         if (input.files && input.files[0]) {
             let reader = new FileReader();
@@ -10,12 +11,12 @@ $(document).ready(function () {
             reader.readAsDataURL(input.files[0]);
         }
     }
-
     // Cuando cambia el fileupload (pq hay foto) le damos tamaño al <img> y ocultamos el <i>cono
     $('#form-image-input').change(function () {
         $('#form-image').width('inherit');
         $('#form-image').height('inherit');
         $('#form-camera').hide();
+        console.log(this)
         readURL(this);
     });
 

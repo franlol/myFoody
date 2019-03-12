@@ -25,11 +25,13 @@ router.get('/', requireUser, async (req, res, next) => {
 router.get('/:id', requireUser, async (req, res, next) => {
     const { id } = req.params;
     const { _id } = req.session.currentUser;
-    try {
-        
-        res.render('user/user');
-    } catch (error) {
-        next(error);
+
+    let isOwner = true;
+    if (id === _id) {
+        return res.redirect('/user');
+    } else {
+        isOwner = false;
+        return res.render('user/user', { isOwner });
     }
 });
 
@@ -44,8 +46,22 @@ router.get('/favs', requireUser, async (req, res, next) => {
     }
 });
 
+// UPLOAD USER PROFILE IMG
 router.post('/', requireUser, parserUser.single('image'), async (req, res, next) => {
-    res.redirect('/user');
+    const { _id } = req.session.currentUser;
+    console.log('in upload');
+    const user = await User.findById(_id);
+
+    if (!_id || req.file === undefined) {
+        console.log('fail');
+
+        return res.redirect('/user');
+    }
+
+    user.imageUrl = req.file.url; // img url
+    user.save();
+    console.log('yes?');
+    return res.redirect('/user');
 });
 
 module.exports = router;

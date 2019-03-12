@@ -8,6 +8,8 @@ const main = () => {
 
     p.innerHTML = descriptionReplaced;
 
+    // formatear los coments para reemplazar los \b por los <br>
+
     // Marcar los checkboxes y colorear dependiendo de las categorias
     const categories = document.getElementById('checkbox-info').value;
     const categoriesArray = categories.split(',');
@@ -65,8 +67,6 @@ const main = () => {
     if (loadFavs === 'true') {
         document.getElementById('recipe-add-fav').style.color = '#22264b';
     }
-
-    // al clickar en favoritos, actualizar el contador
 };
 
 window.addEventListener('load', main);

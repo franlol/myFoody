@@ -37,89 +37,84 @@
           <a id="recipe-add-fav" fav="{{isFav}}" recipe-id="{{recipe._id}}"><i class="fas fa-utensils"></i></a>
           <!-- si el isfav nos llega a true, con el frontend coloreamos el icono azul, reflejando que es favorito -->
         </div>
-        
+      </div>
+    </div>
+
+    <div class="recipe-ingredients">
+      <ul>
+        {{#each recipe.ingredients}}
+        <li>{{this}}</li>
+        {{/each}}
+      </ul>
+    </div>
+
+    <div class="recipe-description">
+      <p>{{recipe.description}}</p>
+    </div>
+
+    <div class="checkbox-container">
+      {{!-- To save checkboxes data and color later with js --}}
+      <input hidden type="text" id="checkbox-info" value="{{recipe.category}}">
+      <div class="checkbox-wrap">
+        <label for="category-meat"><i class="fas fa-drumstick-bite"></i></label><input type="checkbox"
+          name="category-meat" id="category-meat">
+      </div>
+      <div class="checkbox-wrap">
+        <label for="category-vegetables"><i class="fas fa-carrot"></i></label><input type="checkbox"
+          name="category-vegetables" id="category-vegetables">
+      </div>
+      <div class="checkbox-wrap">
+        <label for="category-fish"><i class="fas fa-fish"></i></label><input type="checkbox" name="category-fish"
+          id="category-fish">
+      </div>
+      <div class="checkbox-wrap">
+        <label for="category-backery"><i class="fas fa-birthday-cake"></i></label><input type="checkbox"
+          name="category-backery" id="category-backery">
       </div>
 
-      <div class="recipe-ingredients">
-        <ul>
-          {{#each recipe.ingredients}}
-          <li>{{this}}</li>
-          {{/each}}
-        </ul>
+      <div class="recipe-stats">
+        <p><i class="far fa-eye"></i> {{recipe.views}}</p>
+        <p><i class="fas fa-utensils"></i>
+          <p id="recipe-stats-likes">{{recipe.likes}}</p>
+        </p>
+        <p><i class="far fa-clock"></i> {{recipe.cookingTime}}</p>
       </div>
+    </div>
 
-      <div class="recipe-description">
-        <p>{{recipe.description}}</p>
+    <hr>
+
+    <div class="recipe-comments">
+
+      {{!-- <div class="recipe-comment">
+        <div class="recipe-comments-header">
+          <h2>franlol</h2>
+          <p>23/12/2018</p>
+        </div>
+        <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Nisi, fugit! Animi placeat neque dolorem sed
+          numquam. Voluptatum nostrum adipisci aliquid, dicta perferendis corrupti excepturi, explicabo quod dolorum
+          repellendus impedit harum!
+          Quod ducimus dolorum beatae? Labore hic dolore minima voluptates quibusdam rerum dolor vitae odio ut
+          voluptatem incidunt voluptas odit, nobis vel praesentium enim omnis fugit nihil expedita minus! Beatae,
+          corporis?
+        </p>
+      </div> --}}
+
+      {{#each recipe.comments}}
+      <div class="recipe-comment">
+        <div class="recipe-comments-header">
+          <h2><a href="/user/{{this.authorId._id}}">{{this.authorId.username}}</a></h2>
+          <p>{{this.date}}</p>
+        </div>
+        <p>{{this.content}}</p>
       </div>
+      {{/each}}
 
-      <div class="checkbox-container">
-        {{!-- To save checkboxes data and color later with js --}}
-        <input hidden type="text" id="checkbox-info" value="{{recipe.category}}">
-        <div class="checkbox-wrap">
-          <label for="category-meat"><i class="fas fa-drumstick-bite"></i></label><input type="checkbox"
-            name="category-meat" id="category-meat">
-        </div>
-        <div class="checkbox-wrap">
-          <label for="category-vegetables"><i class="fas fa-carrot"></i></label><input type="checkbox"
-            name="category-vegetables" id="category-vegetables">
-        </div>
-        <div class="checkbox-wrap">
-          <label for="category-fish"><i class="fas fa-fish"></i></label><input type="checkbox" name="category-fish"
-            id="category-fish">
-        </div>
-        <div class="checkbox-wrap">
-          <label for="category-backery"><i class="fas fa-birthday-cake"></i></label><input type="checkbox"
-            name="category-backery" id="category-backery">
-        </div>
-
-        <div class="recipe-stats">
-          <p><i class="far fa-eye"></i> {{recipe.views}}</p>
-          <p><i class="fas fa-utensils"></i>
-            <p id="recipe-stats-likes">{{recipe.likes}}</p>
-          </p>
-          <p><i class="far fa-clock"></i> {{recipe.cookingTime}}</p>
-        </div>
-      </div>
-
-      <hr>
-
-      <div class="recipe-comments">
-        <div class="recipe-comment">
-          <div class="recipe-comments-header">
-            <h2>franlol</h2>
-            <p>23/12/2018</p>
-          </div>
-          <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Nisi, fugit! Animi placeat neque dolorem sed
-            numquam. Voluptatum nostrum adipisci aliquid, dicta perferendis corrupti excepturi, explicabo quod dolorum
-            repellendus impedit harum!
-            Quod ducimus dolorum beatae? Labore hic dolore minima voluptates quibusdam rerum dolor vitae odio ut
-            voluptatem incidunt voluptas odit, nobis vel praesentium enim omnis fugit nihil expedita minus! Beatae,
-            corporis?
-          </p>
-        </div>
-
-        <div class="recipe-comment">
-          <div class="recipe-comments-header">
-            <h2>franlol</h2>
-            <p>23/12/2018</p>
-          </div>
-          <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit.</p>
-        </div>
-        <div class="recipe-comment">
-          <div class="recipe-comments-header">
-            <h2>franlol</h2>
-            <p>23/12/2018</p>
-          </div>
-          <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit.</p>
-        </div>
-      </div>
-
-      <div class="recipe-add-comment">
-        <form action="/recipes/{{recipe._id}}" method="POST">
-          <textarea name="content" id="comment">comment here..</textarea>
-          <button type="submit">Comment</button>
-        </form>
-      </div>
+    </div>
+    <div class="recipe-add-comment">
+      <form action="/recipes/{{recipe._id}}" method="POST">
+        <textarea name="content" id="comment" placeholder="Your comment here.."></textarea>
+        <button type="submit">Comment</button>
+      </form>
     </div>
   </div>
 

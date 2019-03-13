@@ -1,7 +1,5 @@
 $(document).ready(function () {
-    // // input tags: <!-- https://www.jqueryscript.net/form/Tagging-Input-Bootstrap-4.html -->
-    // $('[data-role="tags-input"]').tagsInput();
-
+    // https://github.com/yairEO/tagify
     $('.form-ingredients-input').tagify();
 
     function readURL (input) {
@@ -18,7 +16,6 @@ $(document).ready(function () {
         $('#form-image').width('inherit');
         $('#form-image').height('inherit');
         $('#form-camera').hide();
-        console.log(this);
         readURL(this);
     });
 

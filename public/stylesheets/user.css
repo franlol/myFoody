@@ -64,7 +64,7 @@ body {
 }
 
 .profile-photo-wrap {
-    height: 294px;
+    height: 350px;
     width: 100%;
 }
 
@@ -93,6 +93,7 @@ body {
     color: #95a5a6;
     height: 100%;
 }
+
 .profile-info p i {
     padding-right: 3px;
 }

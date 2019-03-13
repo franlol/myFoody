@@ -5,7 +5,6 @@ const main = () => {
     const buttonProfile = document.getElementById('main-button-user');
     buttonProfile.addEventListener('click', (e) => {
         e.preventDefault();
-        console.log('asd');
         window.location.href = '/user';
     });
 
@@ -73,7 +72,6 @@ const main = () => {
     function addCardLinks () {
         const cards = document.querySelectorAll('.card');
         cards.forEach((card) => {
-            console.log(card);
             card.addEventListener('click', (e) => {
                 const id = card.children[0].value;
                 window.location.replace('/recipes/' + id);

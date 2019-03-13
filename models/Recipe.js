@@ -5,7 +5,7 @@ const Schema = mongoose.Schema;
 
 const ObjectId = Schema.Types.ObjectId;
 
-const recipeModel = new Schema({
+const recipeSchema = new Schema({
     photoUrl: {
         type: String
     },
@@ -47,6 +47,8 @@ const recipeModel = new Schema({
     }]
 });
 
-const Recipe = mongoose.model('Recipe', recipeModel);
+recipeSchema.index({ title: 'text', ingredients: 'text' });
+
+const Recipe = mongoose.model('Recipe', recipeSchema);
 
 module.exports = Recipe;

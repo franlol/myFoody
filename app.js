@@ -15,6 +15,7 @@ const indexRouter = require('./routes/index');
 const authRouter = require('./routes/auth');
 const userRouter = require('./routes/user');
 const recipesRouter = require('./routes/recipes');
+const apiRouter = require('./routes/api');
 
 // APP
 const app = express();
@@ -60,6 +61,7 @@ app.use('/', indexRouter);
 app.use('/auth', authRouter);
 app.use('/user', userRouter);
 app.use('/recipes', recipesRouter);
+app.use('/api', apiRouter);
 
 // 4xx handler
 app.use((req, res, next) => {

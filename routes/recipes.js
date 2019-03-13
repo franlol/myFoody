@@ -141,7 +141,7 @@ router.post('/:id', async (req, res, next) => {
         console.log('FUCK YOU - comment without content');
         return;
     }
-    const date = moment().format('YYY-MM-DD');
+    const date = moment().format('YYYY-MM-DD');
     const recipeComment = {
         content,
         authorId: req.session.currentUser._id,

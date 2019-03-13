@@ -6,7 +6,6 @@ const router = express.Router();
 
 // MODELS
 const Recipe = require('../models/Recipe');
-const User = require('../models/User');
 
 // API
 router.get('/search', async (req, res, next) => {

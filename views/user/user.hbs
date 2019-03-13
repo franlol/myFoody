@@ -14,7 +14,6 @@
 <body>
     <div class="container">
 
-
         <form hidden action="/user" method="POST" enctype="multipart/form-data">
             <input type="file" name="image">
             <button type="submit">Upload</button>
@@ -24,9 +23,11 @@
             <a href="/"><i class="fas fa-chevron-left"></i></a>
         </div>
 
+        {{#if isOwner}}
         <div class="recipe-edit">
-            <a><i class="fas fa-pencil-alt"></i></i></a>
+            <a><i class="fas fa-pencil-alt"></i></a>
         </div>
+        {{/if}}
 
         <div class="profile-photo-wrap">
             <img src="{{user.imageUrl}}" alt="img profile">
@@ -37,25 +38,24 @@
         </div>
 
         {{#if isOwner}}
-            <div class="profile-logout">
-                <form action="/auth/logout" method="post">
-                    <a href="/auth/logout">Sign off</a>
-                    <button type="submit">Sign off</button>
-                </form>
-            </div>
+        <div class="profile-logout">
+            <form action="/auth/logout" method="post">
+                {{!-- <a href="/auth/logout">Sign off</a> --}}
+                <button type="submit">Sign off</button>
+            </form>
+        </div>
 
         <div class="profile-nav">
             <nav>
-                <button>Own</button>
+                <button class="profile-pushed">Own</button>
                 <button>Favourites</button>
             </nav>
         </div>
         {{/if}}
-
         <hr class="profile-hr">
-        
+
         <div class="profile-own-recipes">
-            {{#each ownRecipes}}
+            {{#each user.ownRecipes}}
             <div class="card">
                 <input hidden type="text" value="{{this._id}}">
                 <div class="card-img">
@@ -63,84 +63,24 @@
                 </div>
                 <div class="card-info">
                     <h1>{{this.title}}</h1>
-                    <p class="card-author">{{this.authorId.username}}</p>
+                    <p class="card-author">{{../user.username}}</p>
                 </div>
                 <hr>
 
                 <div class="card-options">
                     <p><i class="far fa-eye"></i> {{this.views}}</p>
                     <p><i class="fas fa-utensils"></i> {{this.likes}}</p>
-                    <p><i class="far fa-comments"></i> 12</p>
+                    <p><i class="far fa-comments"></i> {{this.comments.length}}</p>
                 </div>
             </div>
             {{/each}}
         </div>
 
-        {{#if isOwner}}
         <div class="profile-fav-recipes">
         </div>
-        {{/if}}
 
     </div>
     <script src="/javascripts/user.js"></script>
 </body>
 
 </html>
-
-{{!-- <!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
-</head>
-
-<body>
-    <div>
-       <form action="/user" method="post" enctype="multipart/form-data">
-           <input type="file" name="image" >
-            <button type="submit">Upload</button>
-
-       </form>
-    </div>
-    <a href="/user/favs">See favs</a>
-    <div>
-      {{likes}}
-    </div>
-    <div class="container">
-
-        <div class="main-cards">
-            <p>{{user.username}}</p>
-            {{#each ownRecipes}}
-            <div class="card">
-                <input hidden type="text" value="{{this._id}}">
-                <div class="card-img">
-                    <img src="{{this.photoUrl}}" alt="recipe">
-                </div>
-                <h4>{{this.title}}</h4>
-                <hr>
-                <div class="card-options">
-                    <p><i class="far fa-eye"></i> {{this.views}}</p>
-                    <p><i class="fas fa-utensils"></i> {{this.likes}}</p>
-                    <p><i class="far fa-comments"></i> 12</p>
-                </div>
-            </div>
-            {{/each}}
-        </div>
-        <div class="button-add">
-            <a href="/recipes/add"><i class="fas fa-plus"></i></a>
-        </div>
-
-    </div>
-    <form action="/auth/logout" method="POST">
-        <button type="submit">Logout</button>
-    </form>
-    <script src="/javascripts/main.js"></script>
-
-</body>
-
-
-
-</html> --}}

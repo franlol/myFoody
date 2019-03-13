@@ -8,7 +8,7 @@ const parserUser = require('../middlewares/userUpload');
 
 // MODELS
 const User = require('../models/User');
-const Recipe = require('../models/Recipe');
+// const Recipe = require('../models/Recipe');
 
 // ROUTES
 
@@ -17,7 +17,7 @@ router.get('/', requireUser, async (req, res, next) => {
     try {
         const user = await User.findById(_id).populate('ownRecipes');
         const ownRecipes = user.ownRecipes;
-        res.render('user/user', { user, ownRecipes });
+        res.render('user/user', { user, ownRecipes, isOwner: true });
     } catch (error) {
         next(error);
     }
@@ -27,16 +27,16 @@ router.get('/:id', requireUser, async (req, res, next) => {
     const { id } = req.params;
     const { _id } = req.session.currentUser;
 
-    let isOwner = true;
+    let isOwner = false;
     if (id === _id) {
-        const user = await User.findById(_id).populate('ownRecipes');
-        const ownRecipes = user.ownRecipes;
-        return res.render('user/user', { isOwner, ownRecipes });
-    } else {
+        return res.redirect('/user');
+    }
+    try {
         const user = await User.findById(id).populate('ownRecipes');
         const ownRecipes = user.ownRecipes;
-        isOwner = false;
-        return res.render('user/user', { isOwner, ownRecipes });
+        return res.render('user/user', { user, ownRecipes, isOwner });
+    } catch (err) {
+        next(err);
     }
 });
 

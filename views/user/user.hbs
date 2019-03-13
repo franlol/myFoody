@@ -20,7 +20,7 @@
         </form>
 
         <div class="recipe-back">
-            <a href="/"><i class="fas fa-chevron-left"></i></a>
+            <a onclick="window.history.back()"><i class="fas fa-chevron-left"></i></a>
         </div>
 
         {{#if isOwner}}
@@ -65,6 +65,7 @@
                     <h1>{{this.title}}</h1>
                     <p class="card-author">{{../user.username}}</p>
                 </div>
+                
                 <hr>
 
                 <div class="card-options">

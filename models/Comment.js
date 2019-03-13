@@ -15,7 +15,7 @@ const commentModel = new Schema({
         ref: 'User'
     },
     date: {
-        type: Date,
+        type: String,
         default: Date
     }
 });

@@ -76,8 +76,29 @@
             {{/each}}
         </div>
 
+        {{#if isOwner}}
         <div class="profile-fav-recipes">
+            {{#each user.favRecipes}}
+            <div class="card">
+                <input hidden type="text" value="{{this._id}}">
+                <div class="card-img">
+                    <img src="{{this.photoUrl}}" alt="recipe">
+                </div>
+                <div class="card-info">
+                    <h1>{{this.title}}</h1>
+                    <p class="card-author">{{../user.username}}</p>
+                </div>
+                <hr>
+
+                <div class="card-options">
+                    <p><i class="far fa-eye"></i> {{this.views}}</p>
+                    <p><i class="fas fa-utensils"></i> {{this.likes}}</p>
+                    <p><i class="far fa-comments"></i> {{this.comments.length}}</p>
+                </div>
+            </div>
+            {{/each}}
         </div>
+        {{/if}}
 
     </div>
     <script src="/javascripts/user.js"></script>

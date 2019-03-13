@@ -15,9 +15,13 @@ const User = require('../models/User');
 router.get('/', requireUser, async (req, res, next) => {
     const { _id } = req.session.currentUser;
     try {
-        const user = await User.findById(_id).populate('ownRecipes');
+        const user = await User.findById(_id)
+            .populate('ownRecipes')
+            .populate('favRecipes');
         const ownRecipes = user.ownRecipes;
-        res.render('user/user', { user, ownRecipes, isOwner: true });
+        const favRecipes = user.favRecipes;
+        console.log(favRecipes);
+        res.render('user/user', { user, ownRecipes, isOwner: true, favRecipes });
     } catch (error) {
         next(error);
     }
@@ -32,8 +36,11 @@ router.get('/:id', requireUser, async (req, res, next) => {
         return res.redirect('/user');
     }
     try {
-        const user = await User.findById(id).populate('ownRecipes');
+        const user = await User.findById(id)
+            .populate('ownRecipes');
         const ownRecipes = user.ownRecipes;
+        const favRecipes = user.favRecipes;
+        console.log(favRecipes);
         return res.render('user/user', { user, ownRecipes, isOwner });
     } catch (err) {
         next(err);

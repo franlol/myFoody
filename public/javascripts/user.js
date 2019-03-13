@@ -11,7 +11,7 @@ const main = () => {
         });
     });
 
-    // profile photo handler
+    // change profile-photo handler
     const photo = document.querySelector('.profile-photo-wrap img');
     const input = document.querySelector('form input');
     const form = document.querySelector('form');
@@ -28,12 +28,34 @@ const main = () => {
         }
     }
 
-    editButton.addEventListener('click', (e) => {
-        document.querySelector('form input').click();
-    });
+    if (editButton) {
+        editButton.addEventListener('click', (e) => {
+            document.querySelector('form input').click();
+        });
+    }
 
     input.addEventListener('change', function (e) { // no fArrow por el this
         readURL(this);
+    });
+
+    // recipes Own-Fav switch
+    const ownButton = document.querySelectorAll('.profile-nav nav button')[0];
+    const favButton = document.querySelectorAll('.profile-nav nav button')[1];
+    const ownCards = document.querySelectorAll('.profile-own-recipes .card');
+    const favCards = document.querySelectorAll('.profile-fav-recipes .card');
+    favCards.forEach((card) => { card.style.display = 'none'; });
+
+    ownButton.addEventListener('click', (e) => {
+        ownButton.className = 'profile-pushed';
+        favButton.className = '';
+        ownCards.forEach((card) => { card.style.display = ''; });
+        favCards.forEach((card) => { card.style.display = 'none'; });
+    });
+    favButton.addEventListener('click', (e) => {
+        ownButton.className = '';
+        favButton.className = 'profile-pushed';
+        favCards.forEach((card) => { card.style.display = ''; });
+        ownCards.forEach((card) => { card.style.display = 'none'; });
     });
 };
 

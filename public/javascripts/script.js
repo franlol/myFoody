@@ -1,6 +1,8 @@
 $(document).ready(function () {
-    // input tags: <!-- https://www.jqueryscript.net/form/Tagging-Input-Bootstrap-4.html -->
-    $('[data-role="tags-input"]').tagsInput();
+    // // input tags: <!-- https://www.jqueryscript.net/form/Tagging-Input-Bootstrap-4.html -->
+    // $('[data-role="tags-input"]').tagsInput();
+
+    $('[name=tags]').tagify();
 
     function readURL (input) {
         if (input.files && input.files[0]) {
@@ -16,7 +18,7 @@ $(document).ready(function () {
         $('#form-image').width('inherit');
         $('#form-image').height('inherit');
         $('#form-camera').hide();
-        console.log(this)
+        console.log(this);
         readURL(this);
     });
 

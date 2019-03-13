@@ -15,6 +15,7 @@
     {{!-- <link rel="stylesheet" href="/stylesheets/tags/jquery-tagsinput.min.css"> --}}
 
     <link rel="stylesheet" href="/stylesheets/upload.css">
+    <link rel="stylesheet" href="/tagify/tagify.css">
 
 </head>
 
@@ -62,8 +63,12 @@
             <label for="title">Title:</label>
             <input class="form-input" type="text" name="title" id="title" value="{{title}}">
 
+            {{!-- <label for="ingredients">Ingredients:</label>
+            <input class="form-input" data-role='tags-input' value="{{this.ingredients}}"> <!-- value="tomatoe;">--> --}}
+            
             <label for="ingredients">Ingredients:</label>
-            <input class="form-input" data-role='tags-input' value="{{this.ingredients}}"> <!-- value="tomatoe;">-->
+            <input class="form-input" name="tags" placeholder="write some tags" value="ing1, ing2">
+
 
             <div class="cooking-time-wrap">
                 <label for="cookingTime">Cooking time:</label>
@@ -99,6 +104,8 @@
 
     {{!-- <script src="/javascripts/tags/jquery-tagsinput.min.js"></script> --}}
 
+    <script src="/tagify/jQuery.tagify.min.js"></script>
+    {{!-- <script src="/tagify/tagify.min.js"></script> --}}
     <script src="/javascripts/script.js"></script>
 
 </body>

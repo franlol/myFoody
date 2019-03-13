@@ -44,7 +44,11 @@ const recipeSchema = new Schema({
     comments: [{
         type: ObjectId,
         ref: 'Comment'
-    }]
+    }],
+    date: {
+        type: Date,
+        default: Date.now()
+    }
 });
 
 recipeSchema.index({ title: 'text', ingredients: 'text' });

@@ -2,7 +2,7 @@ $(document).ready(function () {
     // // input tags: <!-- https://www.jqueryscript.net/form/Tagging-Input-Bootstrap-4.html -->
     // $('[data-role="tags-input"]').tagsInput();
 
-    $('[name=tags]').tagify();
+    $('.form-ingredients-input').tagify();
 
     function readURL (input) {
         if (input.files && input.files[0]) {
@@ -37,20 +37,17 @@ $(document).ready(function () {
         }
     });
 
-    // Detectar todos los tags de ingredientes y montar un array con ellos
-    $('#form').submit(function () {
+    // Al hacer submit, primero montamos la lista de ingredientes en el input hidden para enviarlos
+    $('#form').submit(function (e) {
         // e.preventDefault();
         var ingredients = [];
-        $($('.tags-container').children('.tag')).each(function (element) {
-            ingredients.push($(this).find('span').text());
+        $($('.form-ingredients-input').children('tag')).each(function () {
+            ingredients.push($(this).prop('title'));
         });
         $('#form-ingredients').val(ingredients);
         // console.log(ingredients);
         return true;
     });
-
-    // Al entrar a una receta, que se muestren las categorias.
-    // TO DO
 
     // Al editar una receta, miramos el array volcado en el input hidden de los checkboxes y si existen los campos los marcamos de azulito
     const categories = document.getElementById('checkbox-edit').value;

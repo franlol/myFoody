@@ -16,34 +16,7 @@
 
         <div class="main-toolbar">
 
-
-
-            {{!-- <script type="text/javascript">
-                var recognition = new webkitSpeechRecognition();
-                recognition.maxAlternatives = 10;
-                recognition.onresult = (event) => {
-                    console.log(event)
-                    if (event.results.length > 0) {
-                        var result = event.results[0];
-                        for (var i = 0; i < result.length; ++i) {
-                            var text = result[i].transcript;
-                            select.options[i] = new Option(text, text);
-                        }
-                    }
-                }
-                recognition.onend = (event) => {
-                    
-                }
-
-                function start() {
-                    select.options.length = 0;
-                    recognition.start();
-                }
-            </script> --}}
-
-
-            <button id="search-voice-button">Click to Speak</button>
-
+            
 
             <form action="/search" method="post">
 
@@ -77,7 +50,14 @@
             {{/each}}
         </div>
         <div class="button-add">
-            <a href="/recipes/add"><i class="fas fa-plus"></i></a>
+            <button id="search-voice-button">Click to Speak</button>
+            <a href="/recipes/add">
+                <div class="main-burger">
+                    <div class="bar-1"></div>
+                    <div class="bar-2"></div>
+                    <div class="bar-3"></div>
+                </div>
+            </a>
         </div>
 
     </div>

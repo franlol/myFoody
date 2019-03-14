@@ -80,7 +80,35 @@ const main = () => {
     }
     addCardLinks();
 
-    //
+    // VOICE HANDLER
+    const inputSearch = document.querySelector('#form-input-search');
+    const voiceButton = document.querySelector('#search-voice-button');
+    const recognition = new webkitSpeechRecognition();
+
+    recognition.maxAlternatives = 3;
+
+    function voiceRecord () {
+        recognition.start();
+        inputSearch.value = '';
+    }
+
+    voiceButton.addEventListener('click', voiceRecord);
+
+    recognition.onresult = (event) => {
+        console.log(event);
+
+        if (event.results.length > 0) {
+            const result = event.results[0][0].transcript;
+            inputSearch.value = result;
+        }
+    };
+    recognition.onend = (event) => {
+        if (inputSearch.value.length > 0) {
+            searchButton.click();
+        } else {
+            console.log('no hay nada');
+        }
+    };
 };
 
 window.addEventListener('load', main);

@@ -18,10 +18,11 @@
 
 
 
-            {{!-- <script type="text/javascript">
-                var recognition = new SpeechRecognition();
+            <script type="text/javascript">
+                var recognition = new webkitSpeechRecognition();
                 recognition.maxAlternatives = 10;
                 recognition.onresult = function (event) {
+                    console.log(event)
                     if (event.results.length > 0) {
                         var result = event.results[0];
                         for (var i = 0; i < result.length; ++i) {
@@ -37,7 +38,7 @@
                 }
             </script>
             <select id="select"></select>
-            <button onclick="start()">Click to Speak</button> --}}
+            <button onclick="start()">Click to Speak</button>
 
 
             <form action="/search" method="post">

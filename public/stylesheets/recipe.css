@@ -86,7 +86,9 @@ body {
     width: 100%;
 }
 
-.recipe-title .recipe-actions p {
+.recipe-title .recipe-actions a:first-child {
+    font-size: 1.1em;
+    padding-left: 0;
     margin-right: auto;
     margin-bottom: 10px;
     font-style: italic;
@@ -98,12 +100,13 @@ body {
     font-size: 1.6em;
     color: #22264b;
     padding-top: 3px;
+    padding-right: 2px;
 }
 
 .recipe-title a {
     color: inherit;
     font-size: 1.6em;
-    color: #2c3e50;
+    color: #22264b;
     padding-left: 10px;
 }
 

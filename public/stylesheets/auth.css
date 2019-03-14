@@ -53,9 +53,7 @@ h3 {
     font-size: 1.3em;
 }
 
-.validation-li{
-    color: red;
-}
+
 
 .login-wrap form {
     display: flex;
@@ -92,6 +90,12 @@ h3 {
     box-shadow: 0px 5px 46px 0px rgba(255,95,109,0.3);
 
     color: white;
+}
+
+.validation-li{
+    
+    list-style: none;
+    color: red;
 }
 
 .login-wrap a {

@@ -17,7 +17,10 @@ const { requireUser } = require('../middlewares/auth');
 // const { requireForm } = require('../middlewares/recipes');
 
 router.get('/add', requireUser, (req, res, next) => {
-    res.render('recipes/create-edit');
+    const data = {
+        messages: req.flash('validation')
+    };
+    res.render('recipes/create-edit', data);
 });
 
 router.post('/add', requireUser, parser.fields([{ name: 'image' }, { name: 'title' }, { name: 'ingredients' }, { name: 'cookingTime' }, { name: 'description' }]), async (req, res, next) => {
@@ -26,6 +29,7 @@ router.post('/add', requireUser, parser.fields([{ name: 'image' }, { name: 'titl
     let { image } = req.body;
 
     if (!title || !ingredients || !cookingTime || !description) {
+        req.flash('validation', 'There is an empty field');
         res.redirect('/recipes/add');
         console.log('FUCK YOU - middleware require-Form');
         return;
@@ -65,11 +69,10 @@ router.post('/add', requireUser, parser.fields([{ name: 'image' }, { name: 'titl
     };
     try {
         if (_id) {
-            console.log('HAY ID, EXISTIA');
             const updatedRecipe = await Recipe.findByIdAndUpdate(_id, recipe, { new: true });
+
             res.redirect('/recipes/' + updatedRecipe._id);
         } else {
-            console.log('no hay id, NO EXISTIA');
             const newRecipe = await Recipe.create(recipe);
             const adding = await User.findByIdAndUpdate(newRecipe.authorId, { $push: { 'ownRecipes': newRecipe } }, { new: true });
             console.log(adding);
@@ -79,25 +82,6 @@ router.post('/add', requireUser, parser.fields([{ name: 'image' }, { name: 'titl
         next(error);
     }
 });
-
-// router.get('/:id', requireUser, async (req, res, next) => {
-//     const { id } = req.params;
-//     const { _id } = req.session.currentUser;
-//     try {
-//         const recipe = await Recipe.findById(id).populate('authorId');
-//         if (recipe) {
-//             let isCreator = false;
-//             if (recipe.authorId.equals(_id)) {
-//                 isCreator = true;
-//             }
-//             res.render('recipes/recipe', { recipe, isCreator });
-//         } else {
-//             return res.redirect('/');
-//         }
-//     } catch (error) {
-//         next(error);
-//     }
-// });
 
 router.get('/:id', requireUser, async (req, res, next) => {
     const { id } = req.params;
@@ -112,7 +96,6 @@ router.get('/:id', requireUser, async (req, res, next) => {
                     model: 'User'
                 }
             });
-        // console.log(recipe.comments[1].authorId.username);
 
         if (recipe) {
             let isCreator = false;

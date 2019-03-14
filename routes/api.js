@@ -22,7 +22,6 @@ router.get('/search', async (req, res, next) => {
         }
 
         const response = { 'status': 200, 'recipes': recipes, 'word': str };
-
         return res.status(200).json(response);
     } catch (err) {
         next(err);

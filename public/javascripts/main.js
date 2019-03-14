@@ -84,7 +84,7 @@ const main = () => {
     const inputSearch = document.querySelector('#form-input-search');
     const voiceButton = document.querySelector('#search-voice-button');
     const recognition = new webkitSpeechRecognition();
-
+    recognition.lang = 'es-ES';
     recognition.maxAlternatives = 3;
 
     function voiceRecord () {

@@ -159,6 +159,12 @@ textarea {
     font-size: 0.9em;
 }
 
+.validation-li{
+    
+    list-style: none;
+    color: red;
+}
+
 form button {
     /* position: -webkit-sticky;
     position: sticky;

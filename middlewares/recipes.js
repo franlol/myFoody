@@ -4,11 +4,11 @@ module.exports = {
     requireForm (req, res, next) {
         // Extraer el body
         const { title, ingredients, cookingTime, description } = req.body;
-        console.log(title + ' - ' + ingredients + ' - ' + cookingTime + ' - ' + description);
+
         // Comprabar que los campos existen
         if (!title || !ingredients || !cookingTime || !description) {
             res.redirect('/recipes/add');
-            console.log('FUCK YOU - middleware requireForm');
+
             return;
         }
         next();

@@ -1,0 +1,72 @@
+@import url('https://fonts.googleapis.com/css?family=Lobster');
+@import url('https://fonts.googleapis.com/css?family=Lobster+Two:400,700');
+@import url('https://fonts.googleapis.com/css?family=Lato:300,400,700');
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: "Lato", sans-serif;
+  color: #22264b;
+  background: linear-gradient(135deg, rgba(241,242,246,1) 0%, rgba(255,255,255,1) 100%);
+}
+
+.error-container{
+  display: flex;
+  /* flex-direction : column; */
+  justify-content: center;
+  align-items: center;
+  margin: 10px;
+  width: calc(100vw - 20px);
+  height: calc(100vh - 20px);
+}
+
+.error-div{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 90%;
+  width: 100%;
+
+ 
+}
+
+.error-div h1 {
+  margin: 20px;
+  font-size: 70px;
+}
+
+.type-error{
+  margin: 20px;
+  font-size: 30px;
+
+}
+
+.title {
+  font-family: "Lobster", sans-serif;
+  margin-top: 5px;
+  margin-bottom: 35%;
+  padding: 2px 0 0;
+  text-align: center;
+  font-size: 4em;
+
+  background: -webkit-linear-gradient(135deg, #FF5F6D, #FFC371);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+a {
+ 
+  margin: 50px 0;
+  padding: 16px 100px;
+  border: 0px solid #fff;
+  border-radius: 50px;
+  font-size: 1.3em;
+  /* background-image: linear-gradient(to right, #ed6ea0, #ec8c69); */
+  background-image: linear-gradient(to right, #FF5F6D 0%, #FFC371 100%);
+  box-shadow: 0px 5px 46px 0px rgba(19, 5, 6, 0.3);
+
+  color: white;
+  text-decoration: none;
+  margin-top:100px;
+}

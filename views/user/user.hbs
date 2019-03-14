@@ -65,7 +65,7 @@
                     <h1>{{this.title}}</h1>
                     <p class="card-author">{{../user.username}}</p>
                 </div>
-                
+
                 <hr>
 
                 <div class="card-options">
@@ -79,7 +79,7 @@
 
         {{#if isOwner}}
         <div class="profile-fav-recipes">
-            {{#each user.favRecipes}}
+            {{#each favRecipes}}
             <div class="card">
                 <input hidden type="text" value="{{this._id}}">
                 <div class="card-img">
@@ -87,7 +87,8 @@
                 </div>
                 <div class="card-info">
                     <h1>{{this.title}}</h1>
-                    <p class="card-author">{{../user.username}}</p>
+                    <p class="card-author">{{this.authorId.username}}</p>
+
                 </div>
                 <hr>
 

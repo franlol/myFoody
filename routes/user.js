@@ -17,7 +17,13 @@ router.get('/', requireUser, async (req, res, next) => {
     try {
         const user = await User.findById(_id)
             .populate('ownRecipes')
-            .populate('favRecipes');
+            .populate({
+                path: 'favRecipes',
+                populate: {
+                    path: 'authorId',
+                    model: 'User'
+                }
+            });
         const ownRecipes = user.ownRecipes;
         const favRecipes = user.favRecipes;
         console.log(favRecipes);

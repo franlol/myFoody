@@ -80,7 +80,8 @@ body {
 .recipe-title .recipe-actions {
     display: flex;
     justify-content: flex-end;
-
+    align-items: baseline;
+    
     margin-top: 10px;
     height: 40px;    
     width: 100%;

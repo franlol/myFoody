@@ -53,6 +53,10 @@ h3 {
     font-size: 1.3em;
 }
 
+.validation-li{
+    color: red;
+}
+
 .login-wrap form {
     display: flex;
     flex-direction: column;

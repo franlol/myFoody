@@ -89,6 +89,7 @@ const main = () => {
 
     function voiceRecord () {
         recognition.start();
+        document.getElementById('search-voice-button').style.color = 'red';
         inputSearch.value = '';
     }
 
@@ -96,17 +97,18 @@ const main = () => {
 
     recognition.onresult = (event) => {
         console.log(event);
-
+        document.getElementById('search-voice-button').style.color = 'white';
         if (event.results.length > 0) {
             const result = event.results[0][0].transcript;
             inputSearch.value = result;
         }
     };
     recognition.onend = (event) => {
+        document.getElementById('search-voice-button').style.color = 'white';
         if (inputSearch.value.length > 0) {
             searchButton.click();
         } else {
-            console.log('no hay nada');
+            console.log('El micro no ha detectado audio');
         }
     };
 

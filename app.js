@@ -5,6 +5,7 @@ const path = require('path');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
 const mongoose = require('mongoose');
+const hbs = require('hbs');
 
 // SESSIONS MODULES
 const session = require('express-session');
@@ -16,6 +17,7 @@ const authRouter = require('./routes/auth');
 const userRouter = require('./routes/user');
 const recipesRouter = require('./routes/recipes');
 const apiRouter = require('./routes/api');
+const flash = require('connect-flash');
 
 // APP
 const app = express();
@@ -34,6 +36,8 @@ app.use(session({
     }
 }));
 
+app.use(flash());
+
 app.use((req, res, next) => {
     app.locals.currentUser = req.session.currentUser;
     next();
@@ -42,6 +46,7 @@ app.use((req, res, next) => {
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'hbs');
+hbs.registerPartials(path.join(__dirname, '/views/partials'));
 
 app.use(logger('dev'));
 app.use(express.json());

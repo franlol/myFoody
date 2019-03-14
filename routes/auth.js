@@ -16,7 +16,10 @@ const { requireAnon, requireFields, requireUser } = require('../middlewares/auth
 
 // ROUTES
 router.get('/signup', requireAnon, (req, res, next) => {
-    res.render('auth/signup');
+    const data = {
+        messages: req.flash('validation')
+    };
+    res.render('auth/signup', data);
 });
 
 router.post('/signup', requireAnon, requireFields, async (req, res, next) => {
@@ -24,8 +27,9 @@ router.post('/signup', requireAnon, requireFields, async (req, res, next) => {
     try {
         const result = await User.findOne({ username });
         if (result) {
-            console.log('User :' + username + ' already exists. Please choose other one');
-            return res.redirect('/auth/signup');
+            req.flash('validation', 'This username is taken');
+            res.redirect('/auth/signup');
+            return;
         }
         const salt = bcrypt.genSaltSync(saltRounds);
         const hashedPassword = bcrypt.hashSync(password, salt);
@@ -47,7 +51,10 @@ router.post('/signup', requireAnon, requireFields, async (req, res, next) => {
 });
 
 router.get('/login', requireAnon, (req, res, next) => {
-    res.render('auth/login');
+    const data = {
+        messages: req.flash('validation')
+    };
+    res.render('auth/login', data);
 });
 
 router.post('/login', requireAnon, requireFields, async (req, res, next) => {
@@ -56,6 +63,7 @@ router.post('/login', requireAnon, requireFields, async (req, res, next) => {
         const userResult = await User.findOne({ username });
         if (!userResult) {
             // FLASH
+            req.flash('validation', 'Username or password incorrect');
             return res.redirect('/auth/login');
         }
         if (bcrypt.compareSync(password, userResult.password)) {
@@ -64,12 +72,12 @@ router.post('/login', requireAnon, requireFields, async (req, res, next) => {
             return res.redirect('/');
         } else {
             // FLASH
+            req.flash('validation', 'Username or password incorrect');
             return res.redirect('/auth/login');
         }
     } catch (err) {
         next(err);
     }
-    // SESSION UP
 });
 
 router.post('/logout', requireUser, (req, res, next) => {

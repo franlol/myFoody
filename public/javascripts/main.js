@@ -9,7 +9,7 @@ const main = () => {
     });
 
     // Search button
-    const searchButton = document.querySelector('.main-search-button');
+    const searchButton = document.querySelector('.main-button');
 
     searchButton.addEventListener('click', async (e) => {
         e.preventDefault();
@@ -109,8 +109,12 @@ const main = () => {
             console.log('no hay nada');
         }
     };
+
+    // Hamburger bar
+    const mainBurger = document.querySelector('.main-burger');
+    mainBurger.addEventListener('click', function () {
+        this.classList.toggle('change');
+    });
 };
 
 window.addEventListener('load', main);
-
-// { /* <i class="fas fa-spinner fa-spin"></i> */ }

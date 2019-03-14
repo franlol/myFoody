@@ -16,13 +16,12 @@
 
         <div class="main-toolbar">
 
-            
+
 
             <form action="/search" method="post">
 
                 <input type="text" name="search" id="form-input-search" placeholder="Recipe title, ingredients..">
-                <button class="main-search-button" type="submit"><i class="fas fa-search"></i></button>
-                <button id="main-button-user" class="main-search-button"><i class="fas fa-user"></i></button>
+                <button class="main-button" type="submit"><i class="fas fa-search"></i></button>
             </form>
         </div>
         <div class="main-toolbar-space"></div>
@@ -49,19 +48,23 @@
             </div>
             {{/each}}
         </div>
-        <div class="button-add">
-            <button id="search-voice-button">pew pew</button>
-            <a href="/recipes/add">
-                <div class="main-burger">
-                    <div class="bar-1"></div>
-                    <div class="bar-2"></div>
-                    <div class="bar-3"></div>
-                </div>
-            </a>
+
+        <div class="button-menu">
+            {{!-- <a href="/recipes/add"> --}}
+
+            <div class="main-burger">
+                <div class="burger-bar-1"></div>
+                <div class="burger-bar-2"></div>
+                <div class="burger-bar-3"></div>
+            </div>
+            <a href="/recipes/add" class="button-menu-bubble"><i class="fas fa-plus"></i></a>
+            <a href="/" class="button-menu-bubble"><i class="fas fa-home"></i></a>
+            <button id="main-button-user" class="main-button button-menu-bubble"><i class="fas fa-user"></i></button>
+            <button id="search-voice-button" class="main-button button-menu-bubble"><i class="fas fa-microphone"></i></button>
+            {{!-- </a> --}}
+
         </div>
-
     </div>
-
     <script src="/javascripts/main.js"></script>
 </body>
 

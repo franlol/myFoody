@@ -82,7 +82,7 @@ const main = () => {
 
     // VOICE HANDLER
     const inputSearch = document.querySelector('#form-input-search');
-    const voiceButton = document.querySelector('#search-voice-button');
+    const voiceButton = document.getElementById('search-voice-button');
     const recognition = new webkitSpeechRecognition();
     recognition.lang = 'es-ES';
     recognition.maxAlternatives = 3;
@@ -112,8 +112,17 @@ const main = () => {
 
     // Hamburger bar
     const mainBurger = document.querySelector('.main-burger');
+    const mainBurgerAdd = document.getElementById('main-button-add');
+    const mainBurgerHome = document.getElementById('main-button-home');
+    const mainBurgerUser = document.getElementById('main-button-user');
+    const mainBurgerVoice = document.getElementById('search-voice-button');
+
     mainBurger.addEventListener('click', function () {
         this.classList.toggle('change');
+        mainBurgerAdd.classList.toggle('main-button-add');
+        mainBurgerHome.classList.toggle('main-button-home');
+        mainBurgerUser.classList.toggle('main-button-user');
+        mainBurgerVoice.classList.toggle('search-voice-button');
     });
 };
 

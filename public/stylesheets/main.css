@@ -147,7 +147,7 @@ body {
     border-radius: 50px;
     background: -webkit-linear-gradient(135deg, #FF5F6D, #FFC371);
     box-shadow: 0px 0px 41px -4px rgba(0,0,0,0.8);
-    margin: 20px auto 10px;
+    margin: 20px 10px 10px;
 
     z-index: 1;
     display: inline-block;
@@ -162,6 +162,7 @@ body {
     background-color: #fff;
     margin: 5px 0;
     transition: 0.4s;
+    border-radius: 4px;
 }
 
 /* Rotate first burger-bar */
@@ -181,6 +182,42 @@ body {
     transform: rotate(45deg) translate(-6px, -6px);
 }
 
+.main-button-a {
+    width: 20px;
+    border: 0 solid black;
+    color: white;
+    border-radius: 40px;
+    background: -webkit-linear-gradient(135deg, #FF5F6D, #FFC371);
+    box-shadow: 0px 0px 41px -4px rgba(0,0,0,0.8);
+}
+
+.button-menu .main-button-add {
+    padding: 11px 6px 8px 12px;
+    font-size: 16px;
+    left: -50px;
+    bottom: 50px;
+}
+
+.button-menu .main-button-home {
+    padding: 10px 10px;
+    left: -40px;
+    bottom: -5px;
+}
+
+.button-menu .main-button-user {
+    left: -10px;
+    bottom: 95px;
+}
+
+.button-menu .search-voice-button {
+    transition: width 2s;
+    font-size: 16px;
+    border-radius: 40px;
+    padding: 11px 12px 8px 13px;
+    left: 50px;
+    bottom: 95px;
+}
+
 .button-menu-bubble {
     position: absolute;
     right: 25px;
@@ -188,22 +225,3 @@ body {
     z-index: -1;
     /* opacity: 0; */
 }
-
-
-/* 
-.recipe-back {
-    position: sticky;
-    height: 0;
-    top: 16px;
-    margin-left: 8px;
-}
-
-.recipe-back a {
-    padding: 10px 11px;
-    border: 0 solid black;
-    color: white;
-    border-radius: 40px;
-    background: -webkit-linear-gradient(135deg, #FF5F6D, #FFC371);
-    box-shadow: 0px 0px 41px -4px rgba(0,0,0,0.8);
-    margin: 20px auto 10px;
-} */

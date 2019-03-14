@@ -14,7 +14,6 @@ router.get('/search', async (req, res, next) => {
     if (!str) {
         return res.status(204).json({ 'status': 204, 'message': '204 No Content' });
     }
-
     try {
         const recipes = await Recipe.find({ '$text': { '$search': str } }).populate('authorId');
         if (recipes.length === 0) {

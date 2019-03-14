@@ -21,6 +21,7 @@ body {
 
     background: linear-gradient(135deg, rgba(241,242,246,1) 0%, rgba(255,255,255,1) 100%);
     width: 100vw;
+    min-height: 100vh;
 }
 
 .main-toolbar-space {
@@ -135,6 +136,7 @@ body {
 .button-menu {
     display: flex;
     /* justify-content: flex-end; */
+    margin-top: auto;
     margin-left: auto;
     position: sticky;
     bottom: 10px;

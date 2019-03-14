@@ -12,7 +12,10 @@ router.get('/search', async (req, res, next) => {
     const { str } = req.query;
 
     if (!str) {
-        return res.status(204).json({ 'status': 204, 'message': '204 No Content' });
+        const recipes = await Recipe.find().populate('authorId').sort({ date: -1 });
+        const response = { 'status': 200, 'recipes': recipes, 'word': str };
+        return res.status(200).json(response);
+        // return res.status(204).json({ 'status': 204, 'message': '204 No Content' });
     }
     try {
         const recipes = await Recipe.find({ '$text': { '$search': str } }).populate('authorId');

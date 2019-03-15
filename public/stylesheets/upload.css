@@ -150,12 +150,13 @@ input,textarea, .tags-container {
 }
 
 .cooking-time-wrap label {
-    margin-top: 3px;
+    /* margin-top: 3px; */
+    padding-top: 8px;
 }
 
 textarea {
     padding: 10px 5px;
-    width: calc(100% - 10px)5;
+    width: calc(100% - 10px);
     min-height: 160px;
     text-align: left;
     font-size: 0.9em;

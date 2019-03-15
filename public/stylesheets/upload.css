@@ -35,7 +35,7 @@ body {
 }
 
 .recipe-back a {
-    padding: 10px 14px;
+    padding: 10px 10px;
     border: 0 solid black;
     color: white;
     border-radius: 40px;
@@ -111,7 +111,7 @@ form .checkbox-container input {
 }
 
 .container form .form-input {
-    /* height: 40px; */
+    height: 30px;
     width: 100%;
     margin-bottom: 25px;
     font-size: 1em;
@@ -124,18 +124,18 @@ input,textarea, .tags-container {
     font-size: 1em;
     text-align: center;
 }
-
+/* 
 .tags-container {
     border-radius: 10px !important;
     border: 0px solid #fff !important;
     min-height: 100px !important;
     margin-bottom: 25px;
-}
-
+} */
 
 .cooking-time-wrap {
     display: flex;
     margin-bottom: 25px;
+    margin-top: 24px;
 }
 
 .cooking-time-wrap {
@@ -145,6 +145,7 @@ input,textarea, .tags-container {
 .cooking-time-wrap input {
     margin: 0 12px;
     width: 80px;
+    background: white;
     /* margin-bottom: 20px; */
 }
 
@@ -153,10 +154,12 @@ input,textarea, .tags-container {
 }
 
 textarea {
-    width: 100%;
+    padding: 10px 5px;
+    width: calc(100% - 10px)5;
     min-height: 160px;
     text-align: left;
     font-size: 0.9em;
+    font-family: "Lato", sans-serif;
 }
 
 .validation-li{

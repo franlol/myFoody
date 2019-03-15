@@ -250,7 +250,7 @@ hr {
     border: 0px solid #fff;
     border-radius: 50px;
     font-size: 1.3em;
-    width: 90%;
+    width: 100%;
 
     /* background-image: linear-gradient(to right, #ed6ea0, #ec8c69); */
     background-image: linear-gradient(to right, #FF5F6D 0%, #FFC371 100%);

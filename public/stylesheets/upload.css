@@ -109,6 +109,7 @@ form .checkbox-container input {
 .container form label {
     text-align: center;
     font-size: 1.1em;
+    margin-bottom: 5px;
 }
 
 .container form .form-input {

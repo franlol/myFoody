@@ -55,7 +55,7 @@
         <hr class="profile-hr">
 
         <div class="profile-own-recipes">
-            {{#each user.ownRecipes}}
+            {{#each orderedOwnRecipes}}
             <div class="card">
                 <input hidden type="text" value="{{this._id}}">
                 <div class="card-img">
@@ -79,7 +79,7 @@
 
         {{#if isOwner}}
         <div class="profile-fav-recipes">
-            {{#each favRecipes}}
+            {{#each orderedFavRecipes}}
             <div class="card">
                 <input hidden type="text" value="{{this._id}}">
                 <div class="card-img">

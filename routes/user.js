@@ -25,9 +25,15 @@ router.get('/', requireUser, async (req, res, next) => {
                 }
             });
         const ownRecipes = user.ownRecipes;
+        const orderedOwnRecipes = ownRecipes.sort((a, b) => {
+            return b.date - a.date;
+        });
         const favRecipes = user.favRecipes;
+        const orderedFavRecipes = favRecipes.sort((a, b) => {
+            return b.date - a.date;
+        });
         console.log(favRecipes);
-        res.render('user/user', { user, ownRecipes, isOwner: true, favRecipes });
+        res.render('user/user', { user, orderedOwnRecipes, isOwner: true, orderedFavRecipes });
     } catch (error) {
         next(error);
     }

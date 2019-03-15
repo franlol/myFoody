@@ -1,6 +1,12 @@
 'use strict';
 
 const main = () => {
+    // navbar white when scroll down
+    window.onscroll = function () {
+        const nav = document.querySelector('.main-toolbar');
+        if (window.scrollY <= 10) nav.className = 'main-toolbar'; else nav.className = 'main-toolbar main-toolbar-scrolled';
+    };
+
     // Al pulsar el boton del user, el cual pertenece a un form, redirigir a profile
     const buttonProfile = document.getElementById('main-button-user');
     buttonProfile.addEventListener('click', (e) => {

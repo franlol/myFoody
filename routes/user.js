@@ -51,9 +51,12 @@ router.get('/:id', requireUser, async (req, res, next) => {
         const user = await User.findById(id)
             .populate('ownRecipes');
         const ownRecipes = user.ownRecipes;
+        const orderedOwnRecipes = ownRecipes.sort((a, b) => {
+            return b.date - a.date;
+        });
         const favRecipes = user.favRecipes;
         console.log(favRecipes);
-        return res.render('user/user', { user, ownRecipes, isOwner });
+        return res.render('user/user', { user, orderedOwnRecipes, isOwner });
     } catch (err) {
         next(err);
     }

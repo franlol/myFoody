@@ -40,7 +40,8 @@ body {
     color: white;
     border-radius: 40px;
     background: -webkit-linear-gradient(135deg, #FF5F6D, #FFC371);
-    box-shadow: 0px 0px 41px -4px rgba(0,0,0,0.8);
+    /* box-shadow: 0px 0px 41px -4px rgba(0,0,0,0.8); */
+    box-shadow: 0px 0px 10px -2px rgba(0,0,0,0.59);
     margin: 20px auto 10px;
 }
 
@@ -120,6 +121,7 @@ form .checkbox-container input {
 input,textarea, .tags-container {
     border: 0px solid #fff;
     box-shadow: 0px 0px 26px 1px rgba(0,0,0,0.1);
+    /* box-shadow: 0px 0px 10px -2px rgba(0,0,0,0.59); */
     border-radius: 10px;
     font-size: 1em;
     text-align: center;
@@ -184,7 +186,7 @@ form button {
     /* background-image: linear-gradient(to right, #ed6ea0, #ec8c69); */
     background-image: linear-gradient(to right, #FF5F6D 0%, #FFC371 100%);
     /* box-shadow: 0px 5px 46px 0px rgba(255,95,109,0.3); */
-    box-shadow: 0px 0px 27px -4px rgba(0,0,0,0.8);
-
+    /* box-shadow: 0px 0px 27px -4px rgba(0,0,0,0.8); */
+    box-shadow: 0px 0px 10px -2px rgba(0,0,0,0.59);
     color: white;
 }

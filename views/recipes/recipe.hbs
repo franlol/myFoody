@@ -27,7 +27,7 @@
         <h1>{{recipe.title}}</h1>
 
         <div class="recipe-actions">
-          <a href ="/user/{{recipe.authorId._id}}">{{recipe.authorId.username}}</a>
+          <a href="/user/{{recipe.authorId._id}}">{{recipe.authorId.username}}</a>
           {{#if isCreator}}
           <form action="/recipes/{{recipe.id}}/delete" method="post">
             <button><i class="far fa-trash-alt"></i></button>

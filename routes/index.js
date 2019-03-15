@@ -8,7 +8,11 @@ const { requireUser } = require('../middlewares/auth');
 router.get('/', requireUser, async (req, res, next) => {
     try {
         const recipes = await Recipe.find().populate('authorId').sort({ date: -1 });
-        res.render('index', { recipes });
+        const orderedRecipes = recipes.sort((a, b) => {
+            return b.date - a.date;
+        });
+        console.log(orderedRecipes);
+        res.render('index', { orderedRecipes });
     } catch (error) {
         console.log(error);
     }

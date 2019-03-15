@@ -50,7 +50,7 @@ router.post('/add', requireUser, parser.fields([{ name: 'image' }, { name: 'titl
     }
 
     if (!image) {
-        image = 'https://res.cloudinary.com/jeseh/image/upload/v1552147136/no-dish.png';
+        image = 'https://res.cloudinary.com/jeseh/image/upload/v1552657450/plato.jpg';
     }
     if (req.files.image !== undefined) {
         image = req.files.image[0]['url'];

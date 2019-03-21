@@ -20,8 +20,10 @@ body {
     flex-direction: column;
 
     background: linear-gradient(135deg, rgba(241,242,246,1) 0%, rgba(255,255,255,1) 100%);
-    width: 100vw;
+    /* width: 100vw; */
+    width: 375px;
     min-height: 100vh;
+    margin: 0 auto;
 }
 
 /* .main-toolbar-space {
@@ -30,7 +32,8 @@ body {
 } */
 
 .main-toolbar {
-    width: 100vw;
+    /* width: 100vw; */
+    width: 100%;
     position: sticky;
     top: 0px;
     height: 55px;

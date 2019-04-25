@@ -4,6 +4,10 @@
 
 MyFoody is an application where you can share your food recipes with other people. At the same time, you can find recipes depending on what you want.
  
+ #### Demo:
+
+ ![demo](https://raw.githubusercontent.com/franlol/myFoddy/master/demo.gif)
+
 ## User Stories
 
 - **Login** - As a user I want to be able to log in on the webpage so that I can get back to my account

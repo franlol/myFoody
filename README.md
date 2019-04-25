@@ -3,6 +3,8 @@
 ## Description
 
 MyFoody is an application where you can share your food recipes with other people. At the same time, you can find recipes depending on what you want.
+
+Check the [deploy!](https://myfoody.herokuapp.com/auth/login)
  
  #### Demo:
 

@@ -6,7 +6,7 @@ MyFoody is an application where you can share your food recipes with other peopl
  
  #### Demo:
 
- ![demo](https://raw.githubusercontent.com/franlol/myFoddy/master/demo.gif)
+ ![demo](https://github.com/franlol/myFoody/blob/master/demo.gif)
 
 ## User Stories
 
